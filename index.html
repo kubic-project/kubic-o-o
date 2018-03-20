@@ -17,7 +17,7 @@ layout: default
 		</div>
 		<div class="p-3 overflow-hidden w-100 my-auto">
 			<h1 class="display-4">
-				<a href="{{ '/blog' }}">{{ site.name }} Blog</a>
+				<a href="{{ '/blog' | prepend: site.baseurl }}">{{ site.name }} Blog</a>
 			</h1>
 			{% for post in site.posts limit:3 %}
 			<a class="text-dark" href="{{ post.url }}">
