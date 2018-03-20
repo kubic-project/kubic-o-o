@@ -3,7 +3,7 @@ layout: default
 ---
 <div class="position-relative overflow-hidden p-3 text-center bg-dark text-white">
 	<div class="col-md-5 p-lg-5 mx-auto">
-		<img src="/assets/images/logo.svg" style="width:200px;" class="">
+		<img src="{{ /assets/images/logo.svg | prepend: site.baseurl }}" style="width:200px;" class="">
 		<h1 class="display-4 font-weight-normal">{{ site.title }}</h1>
 		<p class="lead font-weight-normal">{{ site.description }}</p>
 	</div>
