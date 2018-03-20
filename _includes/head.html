@@ -2,31 +2,31 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="{{ "/assets/css/js/app.js" | absolute_url }}" type="text/javascript" charset="utf-8"></script>
+	<script src="{{ "/assets/css/js/app.js" | relative_url }}" type="text/javascript" charset="utf-8"></script>
 	<title>{% if page.title == nil %}{{ site.title }}{% else %}{{ site.name }} | {{ page.title }}{% endif %}</title>
 	<meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
-	<link rel="stylesheet" href="{{ "/assets/css/css/app.css" | absolute_url }}">
+	<link rel="stylesheet" href="{{ "/assets/css/css/app.css" | relative_url }}">
 	
-	<link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
-	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ absolute_url }}/assets/favico/apple-touch-icon-57x57.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ absolute_url }}/assets/favico/apple-touch-icon-114x114.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ absolute_url }}/assets/favico/apple-touch-icon-72x72.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ absolute_url }}/assets/favico/apple-touch-icon-144x144.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ absolute_url }}/assets/favico/apple-touch-icon-60x60.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ absolute_url }}/assets/favico/apple-touch-icon-120x120.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ absolute_url }}/assets/favico/apple-touch-icon-76x76.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ absolute_url }}/assets/favico/apple-touch-icon-152x152.png" />
-	<link rel="icon" type="image/png" href="{{ absolute_url }}/assets/favico/favicon-196x196.png" sizes="196x196" />
-	<link rel="icon" type="image/png" href="{{ absolute_url }}/assets/favico/favicon-96x96.png" sizes="96x96" />
-	<link rel="icon" type="image/png" href="{{ absolute_url }}/assets/favico/favicon-32x32.png" sizes="32x32" />
-	<link rel="icon" type="image/png" href="{{ absolute_url }}/assets/favico/favicon-16x16.png" sizes="16x16" />
-	<link rel="icon" type="image/png" href="{{ absolute_url }}/assets/favico/favicon-128.png" sizes="128x128" />
+	<link rel="canonical" href="{{ page.url | replace:'index.html','' | relative_url }}">
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ relative_url }}/assets/favico/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ relative_url }}/assets/favico/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ relative_url }}/assets/favico/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ relative_url }}/assets/favico/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ relative_url }}/assets/favico/apple-touch-icon-60x60.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ relative_url }}/assets/favico/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ relative_url }}/assets/favico/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ relative_url }}/assets/favico/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="{{ relative_url }}/assets/favico/favicon-196x196.png" sizes="196x196" />
+	<link rel="icon" type="image/png" href="{{ relative_url }}/assets/favico/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="{{ relative_url }}/assets/favico/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="{{ relative_url }}/assets/favico/favicon-16x16.png" sizes="16x16" />
+	<link rel="icon" type="image/png" href="{{ relative_url }}/assets/favico/favicon-128.png" sizes="128x128" />
 	<meta name="application-name" content="openSUSE Kubic"/>
 	<meta name="msapplication-TileColor" content="#173F4F" />
-	<meta name="msapplication-TileImage" content="{{ absolute_url }}/assets/favico/mstile-144x144.png" />
-	<meta name="msapplication-square70x70logo" content="{{ absolute_url }}/assets/favico/mstile-70x70.png" />
-	<meta name="msapplication-square150x150logo" content="{{ absolute_url }}/assets/favico/mstile-150x150.png" />
-	<meta name="msapplication-wide310x150logo" content="{{ absolute_url }}/assets/favico/mstile-310x150.png" />
-	<meta name="msapplication-square310x310logo" content="{{ absolute_url }}/assets/favico/mstile-310x310.png" />
-	<meta name="msapplication-notification" content="frequency=30;polling-uri=https://notifications.buildmypinnedsite.com/?feed={{ absolute_url }}/feed.xml&amp;id=1;polling-uri2=https://notifications.buildmypinnedsite.com/?feed={{ absolute_url }}/feed.xml&amp;id=2;polling-uri3=https://notifications.buildmypinnedsite.com/?feed={{ absolute_url }}/feed.xml&amp;id=3;polling-uri4=https://notifications.buildmypinnedsite.com/?feed={{ absolute_url }}/feed.xml&amp;id=4;polling-uri5=https://notifications.buildmypinnedsite.com/?feed={{ absolute_url }}/feed.xml&amp;id=5;cycle=1" />
+	<meta name="msapplication-TileImage" content="{{ relative_url }}/assets/favico/mstile-144x144.png" />
+	<meta name="msapplication-square70x70logo" content="{{ relative_url }}/assets/favico/mstile-70x70.png" />
+	<meta name="msapplication-square150x150logo" content="{{ relative_url }}/assets/favico/mstile-150x150.png" />
+	<meta name="msapplication-wide310x150logo" content="{{ relative_url }}/assets/favico/mstile-310x150.png" />
+	<meta name="msapplication-square310x310logo" content="{{ relative_url }}/assets/favico/mstile-310x310.png" />
+	<meta name="msapplication-notification" content="frequency=30;polling-uri=https://notifications.buildmypinnedsite.com/?feed={{ relative_url }}/feed.xml&amp;id=1;polling-uri2=https://notifications.buildmypinnedsite.com/?feed={{ relative_url }}/feed.xml&amp;id=2;polling-uri3=https://notifications.buildmypinnedsite.com/?feed={{ relative_url }}/feed.xml&amp;id=3;polling-uri4=https://notifications.buildmypinnedsite.com/?feed={{ relative_url }}/feed.xml&amp;id=4;polling-uri5=https://notifications.buildmypinnedsite.com/?feed={{ relative_url }}/feed.xml&amp;id=5;cycle=1" />
 </head>
