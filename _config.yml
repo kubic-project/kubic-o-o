@@ -3,7 +3,7 @@ name: Kubic
 email: opensuse-factory@opensuse.org
 description: Project maintaining multiple container-related technologies as part of the openSUSE Project
 baseurl: ""
-url: http://kubic.opensuse.org
+url: ""
 plugins:
   - jekyll-feed
   - jekyll-paginate
