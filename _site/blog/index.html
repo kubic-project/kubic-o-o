@@ -6,11 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/assets/css/js/app.js" type="text/javascript" charset="utf-8"></script>
-	<title>openSUSE Kubic</title>
+	<title>Kubic | Blog</title>
 	<meta name="description" content="Project maintaining multiple container-related technologies as part of the openSUSE Project">
 	<link rel="stylesheet" href="/assets/css/css/app.css">
 	
-	<link rel="canonical" href="http://localhost:4000/">
+	<link rel="canonical" href="http://localhost:4000/blog/">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://localhost:4000/assets/favico/apple-touch-icon-57x57.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/assets/favico/apple-touch-icon-114x114.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/assets/favico/apple-touch-icon-72x72.png" />
@@ -67,115 +67,48 @@
 
 
     <main class="page-content" aria-label="Content">
-        <div class="position-relative overflow-hidden p-3 text-center bg-dark text-white">
-	<div class="col-md-5 p-lg-5 mx-auto">
-		<img src="assets/images/logo.svg" style="width:200px;" class="">
-		<h1 class="display-4 font-weight-normal">openSUSE Kubic</h1>
-		<p class="lead font-weight-normal">Project maintaining multiple container-related technologies as part of the openSUSE Project</p>
+        <nav class="container-fluid" aria-label="breadcrumb">
+	<div class="breadcrumb row flex-nowrap justify-content-between align-items-center">
+		<span>
+			<ol class="breadcrumb p-0 mb-0">
+				<li class="breadcrumb-item"><a href="/"><img src="/assets/images/symbolic.svg" class="mr-1" style="height:1em; vertical-align:middle;">Kubic</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Blog</li>
+			</ol>
+		</span>
+		<span class="d-flex justify-content-end align-items-center">
+		<a class="btn btn-danger" href="/feed.xml">
+		<span class="typcn typcn-rss"></span>
+		</a>
+		</span>
 	</div>
-</div>
-<div class="position-relative overflow-hidden w-100">
-	<div class="d-md-flex flex-md-equal py-3">
-		<div class="p-3 text-center overflow-hidden text-center w-100  my-auto">
-			<iframe id="ytplayer" type="text/html" style="max-width:720px; width:100%" height="480"
-				src="https://www.youtube.com/embed/OoRZbrMziSM?origin=http://opensuse.org"
-				frameborder="0"></iframe>
-		</div>
-		<div class="p-3 overflow-hidden w-100 my-auto">
-			<h1 class="display-4">
-				<a href="blog">Kubic Blog</a>
-			</h1>
-			
-		</div>
-	</div>
-</div>
-</div>
-<div class="position-relative overflow-hidden w-100 bg-dark text-white" style="margin-bottom: -30px">
-	<div class="container-fluid">
-		<div class="row">
-			
-			<div class="col-md-6 p-5 my-auto">
-				<h1 class="display-4 font-weight-normal">Tumbleweed Kubic</h1>
-				<p class="lead font-weight-normal">
-					Container as a Service Platform based on Kubernetes atop openSUSE MicroOS
-				</p>
-				<p>Tumbleweed-Kubic currently offers the following supported System Roles which can be selected during Installation</p>
-<ul>
-  <li>openSUSE MicroOS</li>
-  <li>“Unconfigured Cluster Node” - openSUSE MicroOS plus an unconfigured Kubic Kubernetes Stack</li>
-</ul>
+</nav>
+<div class="container my-5">
 
-				
-				<a class="btn btn-primary" href="http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-x86_64-Current.iso">
-					<span class="typcn typcn-lg typcn-download"></span>
-					<span class="hidden-xs-down" lang="en">Download</span>
-				</a>
-				
-			</div>
-			
-			<div class="col-md-6 p-5 my-auto">
-				<h1 class="display-4 font-weight-normal">MicroOS</h1>
-				<p class="lead font-weight-normal">
-					openSUSE Tumbleweed based OS providing Transactional (Atomic) Updates upon a read-only btrfs root filesystem
-				</p>
-				<p>Designed to host container workloads with automated administration &amp; patching. Installing the openSUSE MicroOS System Role from Kubic you get a quick, small environment for experimenting with Containers, or any other workload that benefits from Transactional Updates. MicroOS will also soon be offered as Virtual Machine Images</p>
-
-				
-				<a class="btn btn-success" href="https://en.opensuse.org/Kubic:MicroOS">
-					<span class="typcn typcn-lg typcn-arrow-forward"></span>
-					<span class="hidden-xs-down" lang="en">Wiki</span>
-				</a>
-				
-			</div>
-			
-			<div class="col-md-6 p-5 my-auto">
-				<h1 class="display-4 font-weight-normal">Velum</h1>
-				<p class="lead font-weight-normal">
-					Dashboard for openSUSE & SUSE Container as a Service
-				</p>
-				<p>Velum is a dashboard that manages your SUSE CaaS Platform cluster. With Velum, you will be able to :</p>
-<ul>
-  <li>Bootstrap a Kubernetes cluster with a simple click.</li>
-  <li>Manage your Kubernetes: cluster adding and removing nodes from your cluster, monitoring faulty nodes, etc.</li>
-  <li>Setup an update policy that suits your needs. SUSE CaaS Platform already provides a transparent and sensible procedure for updates that guarantees no downtime, but with Velum you will be able to further tune this.</li>
-</ul>
-
-				
-				<a class="btn btn-light" href="https://github.com/kubic-project/velum">
-					<span class="typcn typcn-lg typcn-social-github"></span>
-					<span class="hidden-xs-down" lang="en">Github</span>
-				</a>
-				
-			</div>
-			
-			<div class="col-md-6 p-5 my-auto">
-				<h1 class="display-4 font-weight-normal">And much much more</h1>
-				<p class="lead font-weight-normal">
-					See all of our work on our projects on Github or join us in discussion at IRC and mailing list
-				</p>
-				
-
-				
-				<a class="btn btn-light" href="https://github.com/kubic-project">
-					<span class="typcn typcn-lg typcn-social-github"></span>
-					<span class="hidden-xs-down" lang="en">Github</span>
-				</a>
-				
-				<a class="btn btn-success" href="irc://irc.opensuse.org/#kubic">
-					<span class="typcn typcn-lg typcn-message"></span>
-					<span class="hidden-xs-down" lang="en">IRC</span>
-				</a>
-				
-				<a class="btn btn-primary" href="https://lists.opensuse.org/opensuse-factory/">
-					<span class="typcn typcn-lg typcn-document-text"></span>
-					<span class="hidden-xs-down" lang="en">Mailing List</span>
-				</a>
-				
-			</div>
-			
-		</div>
-	</div>
+<div class="row">
+	
 </div>
+
+<nav aria-label="Page navigation">
+	<ul class="pagination justify-content-center">
+	
+		<li class="page-item disabled">
+			<p class="page-link">
+				<span aria-hidden="true">&laquo;</span>
+				<span class="sr-only">Previous</span>
+			</p>
+		</li>
+	
+		<li class="page-item disabled"><p class="page-link"></p></li>
+	
+		<li class="page-item disabled">
+			<p class="page-link">
+				<span aria-hidden="true">&raquo;</span>
+				<span class="sr-only">Next</span>
+			</p>
+		</li>
+	
+	</ul>
+</nav>
 
     </main>
 

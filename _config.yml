@@ -1,7 +1,11 @@
 title: openSUSE Kubic
+name: Kubic
 email: opensuse-factory@opensuse.org
-description: >-
-  Providing the openSUSE MicroOS Container Operating System and the Kubic
-  Container as a Service Platform based on MicroOS and kubernetes
+description: Project maintaining multiple container-related technologies as part of the openSUSE Project
 baseurl: ""
-url: ""
+url: http://kubic.opensuse.org
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+paginate: 7
+paginate_path: "/blog/page:num/"

@@ -5983,7 +5983,7 @@ textarea {
   font-family: 'typicons';
   font-weight: normal;
   font-style: normal;
-  src: url("https://opensuse-zh.github.io/chameleon/fonts/typicons/typicons.woff") format("woff"), url("https://opensuse-zh.github.io/chameleon/fonts/typicons/typicons.ttf") format("truetype"); }
+  src: url("../fonts/typicons/typicons.woff") format("woff"), url("../fonts/typicons/typicons.ttf") format("truetype"); }
 
 /* :before psuedo-selector inserts and styles icon */
 .typcn:before {
@@ -7374,4 +7374,3 @@ textarea {
   margin: auto; }
   #software-navbar form.form-inline input.form-control {
     flex: 1 1 200px; }
-

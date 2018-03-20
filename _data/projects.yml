@@ -1,0 +1,59 @@
+- name: Tumbleweed Kubic
+  rundown: Container as a Service Platform based on Kubernetes atop openSUSE MicroOS
+  description: >-
+    Tumbleweed-Kubic currently offers the following supported System Roles which can be selected during Installation
+    
+    * openSUSE MicroOS
+    
+    * "Unconfigured Cluster Node" - openSUSE MicroOS plus an unconfigured Kubic Kubernetes Stack
+  links:
+    - name: Download
+      link: http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-x86_64-Current.iso
+      icon: download
+      color: primary
+
+- name: MicroOS
+  rundown: openSUSE Tumbleweed based OS providing Transactional (Atomic) Updates upon a read-only btrfs root filesystem
+  description: >-
+    Designed to host container workloads with automated administration & patching.
+    Installing the openSUSE MicroOS System Role from Kubic you get a quick, small environment for experimenting with Containers, or any other workload that benefits from Transactional Updates.
+    MicroOS will also soon be offered as Virtual Machine Images
+  links:
+    - name: Wiki
+      link: https://en.opensuse.org/Kubic:MicroOS
+      icon: arrow-forward
+      color: success
+
+- name: Velum
+  rundown: Dashboard for openSUSE & SUSE Container as a Service
+  description: >-
+   Velum is a dashboard that manages your SUSE CaaS Platform cluster. With Velum, you will be able to :
+
+   * Bootstrap a Kubernetes cluster with a simple click.
+   
+   * Manage your Kubernetes: cluster adding and removing nodes from your cluster, monitoring faulty nodes, etc.
+   
+   * Setup an update policy that suits your needs. SUSE CaaS Platform already provides a transparent and sensible procedure for updates that guarantees no downtime, but with Velum you will be able to further tune this.
+  links:
+    - name: Github
+      link: https://github.com/kubic-project/velum
+      icon: social-github
+      color: light
+
+- name: And much much more
+  rundown: See all of our work on our projects on Github or join us in discussion at IRC and mailing list
+  links:
+    - name: Github
+      link: https://github.com/kubic-project
+      icon: social-github
+      color: light
+
+    - name: IRC
+      link: irc://irc.opensuse.org/#kubic
+      icon: message
+      color: success
+
+    - name: Mailing List
+      link: https://lists.opensuse.org/opensuse-factory/
+      icon: document-text
+      color: primary
