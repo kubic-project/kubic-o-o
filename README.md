@@ -1,3 +1,3 @@
 # kubic-o-o
 
-Website for kubic.opensuse.org
+This is the jekyll sources for the kubic.opensuse.org website
