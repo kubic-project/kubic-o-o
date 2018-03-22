@@ -19,21 +19,12 @@ layout: default
 			  <a href="blog">Kubic Blog</a>
 			</h1>
 			{% for post in site.posts limit:3 %}
-	    <p class="lead font-weight-normal">
 			<a class="text-dark" href="{{ post.url }}">
-					Read the latest updates from the Kubic Project
 				<div class="p-2">
-				</p>
 					<h1 class="mb-0">
-		    <a class="btn btn-dark" href="blog">
 						{{ post.title }}
-			    <span class="typcn typcn-lg typcn-arrow-forward"></span>
-					</h1>
-		      <span class="hidden-xs-down" lang="en">Blog</span>
 					<p class="text-muted">{{ post.date | date: "%b %-d, %Y" }}</p>
-		    </a>
 					<div>
-
 						<p>
 							{{ post.content | strip_html | truncatewords: 50}}
 						</p>
