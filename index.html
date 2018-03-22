@@ -14,18 +14,32 @@ layout: default
 			<script async class="speakerdeck-embed" data-id="66c5108341ae43d3b02761c3e87fe8e6" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 		</div>
 		<div class="p-3 overflow-hidden w-100 my-auto">
-			  <h1 class="display-4">
-				  <a href="blog">Kubic Blog</a>
-			  </h1>
-		    <p class="lead font-weight-normal">
+		  <h1 class="display-4">
+				<a href="{{ '/blog' | prepend: site.baseurl }}">{{ site.name }} Blog</a>
+			  <a href="blog">Kubic Blog</a>
+			</h1>
+			{% for post in site.posts limit:3 %}
+	    <p class="lead font-weight-normal">
+			<a class="text-dark" href="{{ post.url }}">
 					Read the latest updates from the Kubic Project
+				<div class="p-2">
 				</p>
+					<h1 class="mb-0">
 		    <a class="btn btn-dark" href="blog">
+						{{ post.title }}
 			    <span class="typcn typcn-lg typcn-arrow-forward"></span>
+					</h1>
 		      <span class="hidden-xs-down" lang="en">Blog</span>
+					<p class="text-muted">{{ post.date | date: "%b %-d, %Y" }}</p>
 		    </a>
+					<div>
 
-      </div>
+						<p>
+							{{ post.content | strip_html | truncatewords: 50}}
+						</p>
+					</div>
+				</div>
+			</a>
 			<div style="border-bottom:1px solid #ddd; margin: 2rem;"></div>
 			{% endfor %}
 		</div>
