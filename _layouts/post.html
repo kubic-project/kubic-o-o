@@ -20,7 +20,8 @@ layout: default
 <div class="container my-5">
 	<h1 class="display-4 mb-0">{{ page.title }}
 	</h1>
-	<p class="mb-2 ml-1 text-muted">{{ page.date | date: "%b %-d, %Y" }}</p>
+	<p class="mb-2 ml-1 text-muted">{{ page.date | date: "%b %-d, %Y" }}{% if author %} | Written by {{ author }}{% endif %}
+	</p>
 	<div class="mx-3">
 		{{ content }}
 	</div>

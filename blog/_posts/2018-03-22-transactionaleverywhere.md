@@ -2,6 +2,7 @@
 layout: post
 title:  "Transactional Updates in Leap 15 & Tumbleweed"
 date:   2018-03-22 14:25:00 +0000
+author: "Richard Brown"
 ---
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat eros ligula, quis tincidunt nulla facilisis ac. Mauris ut arcu non mi consectetur pulvinar. Etiam egestas felis eget tincidunt ultrices. Curabitur nunc ante, commodo eu rhoncus vel, pulvinar at dui. Quisque in ligula vel ex aliquet eleifend et sit amet nunc. Donec mattis augue a sodales volutpat. Pellentesque ac lorem eget felis aliquam rutrum id ut nisi. Nam efficitur lacus sed orci ultrices, sit amet mollis metus viverra. Nam ornare massa turpis, porttitor tincidunt risus viverra nec. Nullam vitae odio non diam vehicula venenatis. Nam tincidunt est in dui vestibulum porttitor. Donec quis massa eget libero accumsan semper et in purus.
 
