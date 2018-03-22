@@ -18,7 +18,7 @@ layout: default
 				<a href="{{ '/blog' | prepend: site.baseurl }}">{{ site.name }} Blog</a>
 			</h1>
 			{% for post in site.posts limit:3 %}
-			<a class="text-dark" href="{{ post.url }}">
+			<a class="text-dark" href="{{ post.url | prepend: site.baseurl }}">
 				<div class="p-2">
 					<h1 class="mb-0">
 						{{ post.title }}
