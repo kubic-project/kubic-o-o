@@ -16,6 +16,5 @@ permalink: /:year-:month-:day-:title/
 exclude:
   - Gemfile
   - Gemfile.lock
-  - LICENSE
   - README.md
 
