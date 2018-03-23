@@ -2,7 +2,7 @@
 layout: post
 title:  "Introduction to Kubic"
 date:   2018-03-22 13:33:00 +0000
-author: Richard Brown
+author: The Kubic Team
 ---
 Welcome to the webpage and inaugural blog post of the Kubic Project. This post should serve as a basic introduction to Kubic for anyone interested in what we're doing.
 
