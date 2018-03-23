@@ -10,7 +10,7 @@ plugins:
 paginate: 7
 paginate_path: "/blog/page:num/"
 
-permalink: /:year-:month-:day-:title/
+permalink: /blog/:year-:month-:day-:title/
 
 # Exclude these files from production site
 exclude:
