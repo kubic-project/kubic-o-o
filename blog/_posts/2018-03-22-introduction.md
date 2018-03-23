@@ -37,23 +37,26 @@ As the world of containers moves very quickly, this list is bound to be incomple
 
 ## Transactional Updates
 
-[transactional-update](https://github.com/openSUSE/transactional-update) is a command-line tool that brings **atomic updates** to openSUSE & SUSE distributions.  
-It leverages our long experience with `btrfs`, `zypper` and `snapper` to update a system _without touching the running system_.  
+[transactional-update](https://github.com/openSUSE/transactional-update) is a command-line tool that brings **atomic updates** to openSUSE & SUSE distributions.
+
+It leverages our long experience with `btrfs`, `zypper` and `snapper` to update a system _without touching the running system_.
+
 All package updates are prepared as a single operation in a btrfs snapshot. This snapshot is not used until the next reboot.  
 Any problems can be _immediately rolled back_ by discarding the this transactional snapshot and rebooting again, instantly returning the system to it's working order.
 
 When coupled with a **read-only root filesystem**, users are left with a robust running operating system that they can be confident will not change in any way at all while it's running, and can be confidently returned to working order if updates have unintended side-effects.
 
-Transactional Updates are currently available by default in Tumbleweed Kubic and will soon be available as an installation option in both [openSUSE Tumbleweed](https://en.opensuse.org/Portal:Tumbleweed) and [openSUSE Leap 15](https://en.opensuse.org/Portal:Leap).
+Transactional Updates with read-only root filesystem are currently available by default in Tumbleweed Kubic and will soon be available as an installation option in both [openSUSE Tumbleweed](https://en.opensuse.org/Portal:Tumbleweed) and [openSUSE Leap 15](https://en.opensuse.org/Portal:Leap).
 
 ## MicroOS
 
 [MicroOS](https://en.opensuse.org/Kubic:MicroOS) is the base system for Tumbleweed Kubic.  
 It is an [openSUSE Tumbleweed](https://en.opensuse.org/Portal:Tumbleweed) derivative designed to run **containers** and optimised for **large deployments**.  
 
-It includes both _a read-only root filesystem_ and fully automated _transactional updates_ out of the box. It's development and release is fully aligned and tested as part of Tumbleweed, meaning any new Tumbleweed release automatically includes updates to Kubic's MicroOS.
+It includes both a read-only root filesystem and _fully automated_ transactional updates out of the box. It's development and release is fully aligned and tested as part of Tumbleweed, meaning any new Tumbleweed release automatically includes updates to Kubic's MicroOS.
 
-MicroOS can currently be installed as by selecting the _System Role_ when installing Tumbleweed Kubic. In the future we also intend to offer VM images.
+MicroOS can currently be installed as by selecting the _System Role_ when installing Tumbleweed Kubic.  
+In the future we also intend to offer VM images.
 
 ## Tumbleweed Kubic
 
@@ -75,7 +78,7 @@ Velum is under active development and we are hopeful to offer Tumbleweed Kubic i
 
 ## Alternative Container Runtimes
 
-We are currently investigating alternative container runtimes such as [CRI-O](http://cri-o.io/) and it's companion tooling [Podman](https://github.com/projectatomic/libpod) as *more lightweight option* for running containers both within Kubernetes and as a stand-alone runtime.
+We are currently investigating alternative container runtimes such as [CRI-O](http://cri-o.io/) and it's companion tooling [Podman](https://github.com/projectatomic/libpod) as **more lightweight option** for running containers both within Kubernetes and as a stand-alone runtime.
 
 Both are already available in both Tumbleweed & Tumbleweed Kubic today.
 
@@ -83,7 +86,7 @@ Both are already available in both Tumbleweed & Tumbleweed Kubic today.
 
 Most importantly, like every openSUSE Project, Kubic is an open community.
 
-*We would like your help*.
+**We would like your help**.
 
 Our sources can be found on [GitHub](https://github.com/kubic-project).
 
