@@ -90,4 +90,4 @@ Most importantly, like every openSUSE Project, Kubic is an open community.
 
 Our sources can be found on [GitHub](https://github.com/kubic-project).
 
-If you're interested in helping us on anything mentioned here, or have ideas on what we should be looking at, then please get in touch either on our [Mailing List](https://lists.opensuse.org/opensuse-factory/) or on IRC where you can find us in *#Kubic on Freenode*.
+If you're interested in helping us on anything mentioned here, or have ideas on what we should be looking at, then please get in touch either on our [Mailing List](https://lists.opensuse.org/opensuse-factory/) or on IRC where you can find us in **#Kubic on Freenode**.
