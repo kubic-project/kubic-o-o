@@ -10,8 +10,8 @@ Welcome to the webpage and inaugural blog post of the Kubic Project. This post s
 
 # What is Kubic?
 
-The Kubic Project is a sub-project of the broader [openSUSE Project](https://www.opensuse.org).  
-We're focused on new and emerging technologies surrounding containers. We're exploring, developing, adapting and integrating these technologies, helping bring them to the world of openSUSE and helping to improve them directly in their respective upstream projects.  
+The Kubic Project is a sub-project of the broader [openSUSE Project](https://www.opensuse.org).
+We're focused on new and emerging technologies surrounding containers. We're exploring, developing, adapting and integrating these technologies, helping bring them to the world of openSUSE and helping to improve them directly in their respective upstream projects.
 
 Many of these technologies also serve as upstreams for [SUSE's CaaS Platform](https://www.suse.com/products/caas-platform/) Product.
 
@@ -32,7 +32,8 @@ As of March 2018 we're currently working on:
  * Tumbleweed Kubic
  * Velum
  * Alternative Container Runtimes (CRI-O, Podman)
- 
+ * Rootless Containers
+
 As the world of containers moves very quickly, this list is bound to be incomplete and incorrect for readers in the future, but below is a brief summary of each to give a flavour of what we're working on.
 
 ## Transactional Updates
@@ -41,7 +42,7 @@ As the world of containers moves very quickly, this list is bound to be incomple
 
 It leverages our long experience with `btrfs`, `zypper` and `snapper` to update a system _without touching the running system_.
 
-All package updates are prepared as a single operation in a btrfs snapshot. This snapshot is not used until the next reboot.  
+All package updates are prepared as a single operation in a btrfs snapshot. This snapshot is not used until the next reboot.
 Any problems can be _immediately rolled back_ by discarding this transactional snapshot and rebooting again, instantly returning the system to its working order.
 
 When coupled with a **read-only root filesystem**, users are left with a robust running operating system that they can be confident will not change in any way at all while it's running, and can be confidently returned to working order if updates have unintended side-effects.
@@ -50,12 +51,12 @@ Transactional Updates with read-only root filesystem are currently available by 
 
 ## MicroOS
 
-[MicroOS](https://en.opensuse.org/Kubic:MicroOS) is the base system for Tumbleweed Kubic.  
-It is an [openSUSE Tumbleweed](https://en.opensuse.org/Portal:Tumbleweed) derivative designed to run **containers** and optimised for **large deployments**.  
+[MicroOS](https://en.opensuse.org/Kubic:MicroOS) is the base system for Tumbleweed Kubic.
+It is an [openSUSE Tumbleweed](https://en.opensuse.org/Portal:Tumbleweed) derivative designed to run **containers** and optimised for **large deployments**.
 
 It includes both a read-only root filesystem and _fully automated_ transactional updates out of the box. Its development and release is fully aligned and tested as part of Tumbleweed, meaning any new Tumbleweed release automatically includes updates to Kubic's MicroOS.
 
-MicroOS can currently be installed as by selecting the _System Role_ when installing Tumbleweed Kubic.  
+MicroOS can currently be installed as by selecting the _System Role_ when installing Tumbleweed Kubic.
 In the future we also intend to offer VM images.
 
 ## Tumbleweed Kubic
@@ -81,6 +82,30 @@ Velum is under active development and we are hopeful to offer Tumbleweed Kubic i
 We are currently investigating alternative container runtimes such as [CRI-O](http://cri-o.io/) and its companion tooling [Podman](https://github.com/projectatomic/libpod) as **more lightweight option** for running containers both within Kubernetes and as a stand-alone runtime.
 
 Both are already available in both Tumbleweed & Tumbleweed Kubic today.
+
+## Rootless Containers
+
+This is a project that was spear-headed by our team (based on the work of the
+larger container community). The idea was to allow completely unprivileged
+users to create containers on their own machines using a standardised container
+runtime ([runc][runc]). We also wrote [umoci][umoci] which allows unprivileged
+(and privileged) users to operate easily on [OCI][oci] images.
+
+Currently the main interest being worked on (along with some of the containers
+community) is the ability to have unprivileged networking using TAP. This would
+(theoretically) push us closer to having the possibility of a rootless
+Kubernetes deployment. You can keep a close eye on
+[rootlesscontaine.rs][rootlesscontainers] if you're interested in more about
+this effort.
+
+Rootless containers already work flawlessly on all modern openSUSE
+distributions.
+
+
+[runc]: https://github.com/opencontainers/runc
+[umoci]: https://github.com/openSUSE/umoci
+[oci]: https://www.opencontainers.org
+[rootlesscontainers]: https://rootlesscontaine.rs
 
 # How can I get involved?
 
