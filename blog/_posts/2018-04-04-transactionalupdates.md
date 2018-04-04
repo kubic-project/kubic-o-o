@@ -25,7 +25,7 @@ These are integrated with *zypper* and *YaST* to automatically record the system
 
 This goes some way to address some of the problems. Snapshots do provide a very reliable way of restoring the system to a working state, but ultimately this approach does not mitigate many of the problems that can break the system in the first place.
 
-Traditional updates are run against the running system, and thusly they can impact and be impacted by services currently running. These dynamic variables can more likely lead to a situation where an update fails or only partially succeed, meaning that need for rolling back a system can actually happen more often than it should.
+These "traditional" updates are run against the running system, and thusly they can impact and be impacted by services currently running. These dynamic variables can more likely lead to a situation where an update fails or only partially succeed, meaning that need for rolling back a system can actually happen more often than it should.
 
 ## Introducing Transactional Updates
 
