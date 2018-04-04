@@ -71,7 +71,7 @@ But now the feature is also available in openSUSE Leap 15 and Tumbleweed there a
 
 The easiest way to use transactional updates is to select the appropriate role during a Leap 15 or Tumbleweed installation.
 
-![Screenshot](/assets/images/TransactionalScreenshot.png)  
+![Screenshot](/assets/images/TransactionalScrenshot.png)  
 *System Role selection screen in openSUSE Leap 15*
 
 Once installed, just use `transactional-update` as the replacement for `zypper` or `yast` for upgrading, updating, or removing the software on your system.  
