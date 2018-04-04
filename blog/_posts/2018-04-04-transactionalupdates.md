@@ -13,8 +13,8 @@ Software updates have two common, but often conflicting requirements. Everyone s
 
 But at the same time, no one wants to risk their currently running system. **"Never touch a running system"** is a mantra which many sysadmins and users around the world stick to, with good reason. Software updates do come with an element of risk, and this risk has a habit of increasing on systems with more users and more packages. Sooner or later, something can go wrong. 
 
-> "Never touch a running system" 
->       *- Every Sysadmin, Ever*  
+> "Never touch a running system"
+>       *- Every Sysadmin, ever*  
 
 This a problem we've long wrestled with in openSUSE & SUSE distributions. In Tumbleweed we release updates at a breakneck pace, hundreds of new packages a week. Users want and need these updates at close to that pace as they can handle, but want a minimal risk.  
 In the world of SUSE's Enterprise distributions, the demands are no easier. Mission Critical systems often have extensive solutions for high availabilty, so updates that disrupt the uptime of a *service* are more expensive than regularly rebooting a system. In these environments it's also very important that updates are applied perfectly. Changes should be applied completely with the system never left is an undefined or questionable state.
@@ -43,14 +43,17 @@ As customary when introducing anything new to the open source, it is only fair t
 For a long time, some users have used the rather expensive approach of maintaining multiple versions of their system in multiple partitions on disk, to be able to easily switch between them and address many of these problems. Of course it works, but it's rather expensive in terms of disk storage and maintenance effort.
 
 Looking for a more modern approach, there are solutions like ostree & snap which attempt to address these problems and bring atomic/transactional updates to their users.  
+
 These solutions are not without their benefits, but come with some key flaws which Transactional Updates avoid. Namely they require users, developers, and partnering software vendors to all learn new ways of managing their systems. Existing packages cannot be re-used, requiring either repackging or converstion. And existing repositories and other common package delivery mechanisms are no longer available.  
+
 All of this develops to a situation where adopters need to redesign their mindsets, systems, tools and company policies to work with these tools. And that is something Transactional Updates strives to avoid.
 
 ## Keeping it simple
 
 Under the hood, we have worked hard to keep Transactional Updates simple. We are utilising the same *btrfs*, *snapper*, and *zypper* technologies we know and trust by default in openSUSE and SLE.
 
-At it's heart, Transactional Updates does something very similar to our traditional snapshots with rollback. But with Transactional Updates it **never touchs the running system**. Instead of patching the current system, the `transactional-update` tool creates a new, empty, snapshot. All of the operations required by the update are carried out into that snapshot, ensuring the current system is *untouched* with no changes impacting the running system.  
+At its heart, Transactional Updates does something very similar to our traditional snapshots with rollback. But with Transactional Updates it **never touches the running system**.  
+Instead of patching the current system, the `transactional-update` tool creates a new, empty, snapshot. All of the operations required by the update are carried out into that snapshot, ensuring the current system is *untouched* with no changes impacting the running system.  
 At the end of the update, assuming the update is successful, this completed snapshot is marked as the new default. These updates then take effect when the system is rebooted.
 
 If the update was unsuccessful, the snapshot is discarded and no change is made to the system. 
@@ -63,9 +66,9 @@ And yet in many cases, users do not need to be able to write to their root files
 ![Role Detail](/assets/images/TransactionalRole.png)  
 *Introducing the Transactional Server role*
 
-User configuration is in `/etc` is writable by virtue of an automatically configured `overlayfs` and `/var` is writable for services as it is now a [seperate subvolume](https://lists.opensuse.org/opensuse-factory/2018-01/msg00390.html). 
+User configuration in `/etc` is writable by virtue of an automatically configured `overlayfs` and `/var` is writable for services as it is now a [seperate subvolume](https://lists.opensuse.org/opensuse-factory/2018-01/msg00390.html). 
 
-This role originates from [SUSE CaaS Platform](https://www.suse.com/products/caas-platform/) and [Tumbleweed Kubic](http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-x86_64-Current.iso) where this feature is used by default to provide a **Container Host** or **Kubernetes Cluster Node**.
+This role shares many similarities with [SUSE CaaS Platform](https://www.suse.com/products/caas-platform/) and [Tumbleweed Kubic](http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-x86_64-Current.iso) where this feature is used by default to provide a **Container Host** or **Kubernetes Cluster Node**.
 
 But now the feature is also available in openSUSE Leap 15 and Tumbleweed there are even more possibilities. Do you want to be even more sure than usual that your **web or mail server** is patched regularly withot breaking? How about your **Virtualistion Host**? What about **IoT**? Maybe even [a transactional desktop?](https://rootco.de/2017-11-16-hackweek-2017-conclusion/).
 
@@ -90,12 +93,12 @@ After any of the above, you need to `reboot` your system before the changes will
 
 ## Enabling Automatic Transactional Updates and Reboot
 
-Transactional Updates can be set to automatically run daily by simply running `systemctl enable --now transactional-update.timer`.  
+Transactional Updates can be set to automatically run daily by simply running `systemctl enable --now transactional-update.timer`  
 
 This is rather useless however without some automated way of rebooting the system. Rather than a dumb `cron` job, we recommend using `rebootmgr`. It can be enabled by running `systemctl enable --now rebootmgr.service`.  
 By default `rebootmgr` will reboot a system sometime between 0330 and 0500 if an update is pending. Edit `/etc/rebootmgr.conf` to configure the `rebootmgr` service to change this maintenance window to suit your needs.
 
 That's it, you now have fully automated transactional system for whatever you want to run.
 
-*Have a lot of fun!*
+Thanks, happy transactional updating, and *have a lot of fun!*
 
