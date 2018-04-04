@@ -34,7 +34,7 @@ Put simply, a Transactional Update is an update that is:
 
 **Atomic**. It is either fully applied, or not at all. Also the update is accomplished as a single transaction, that does not influence the running system.
 
-**Rollbackable**. If an update fails, or if the successful update is deemed to be incompatible or otherwise incorrect, it can be quickly discarded to immediately return the system to its previously functioning state.
+**Easily reverted**. If an update fails, or if the successful update is deemed to be incompatible or otherwise incorrect, it can be quickly discarded to immediately return the system to its previously functioning state.
 
 ## What about...?
 
