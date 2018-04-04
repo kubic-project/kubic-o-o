@@ -13,17 +13,16 @@ Software updates have two common, but often conflicting requirements. Everyone s
 
 But at the same time, no one wants to risk their currently running system. **"Never touch a running system"** is a mantra which many sysadmins and users around the world stick to, with good reason. Software updates do come with an element of risk, and this risk has a habit of increasing on systems with more users and more packages. Sooner or later, something can go wrong. 
 
-> "Never touch a running system"
->       *- Every Sysadmin, ever*  
+This a problem we've long wrestled with in openSUSE & SUSE distributions. In Tumbleweed we release updates at a breakneck pace, hundreds of new packages a week. Users want and need these updates at close to that pace as they can handle, but want a minimal risk.
 
-This a problem we've long wrestled with in openSUSE & SUSE distributions. In Tumbleweed we release updates at a breakneck pace, hundreds of new packages a week. Users want and need these updates at close to that pace as they can handle, but want a minimal risk.  
 In the world of SUSE's Enterprise distributions, the demands are no easier. Mission Critical systems often have extensive solutions for high availabilty, so updates that disrupt the uptime of a *service* are more expensive than regularly rebooting a system. In these environments it's also very important that updates are applied perfectly. Changes should be applied completely with the system never left is an undefined or questionable state.
 
 ## Snapshots - The Beginning of the Answer
 
 In all current openSUSE & SUSE Linux Enterprise distributions we use *btrfs* with *snapper* by default to offer our users baked in **snapshots with rollback**.
 
-These are integrated with *zypper* and *YaST* to automatically record the system state before and after any software or configuration changes by these tools.  
+These are integrated with *zypper* and *YaST* to automatically record the system state before and after any software or configuration changes by these tools.
+
 This goes some way to address some of the problems. Snapshots do provide a very reliable way of restoring the system to a working state, but ultimately this approach does not mitigate many of the problems that can break the system in the first place.
 
 Traditional updates are run against the running system, and thusly they can impact and be impacted by services currently running. These dynamic variables can more likely lead to a situation where an update fails or only partially succeed, meaning that need for rolling back a system can actually happen more often than it should.
