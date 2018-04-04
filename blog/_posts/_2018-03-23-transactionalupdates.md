@@ -10,9 +10,11 @@ But what are they, and why should you be interested?
 ## Patching isn't Easy
 
 Software updates have two common, but often conflicting requirements. Everyone should update as soon and as often as possible to ensure they are running the latest, most secured versions of their software. Without this, there is a greater risk of software failure or successful cyberattacks against your system.  
-But at the same time, no one wants to risk their currently running system. "Never touch a running system" is a mantra which many sysadmins and users around the world stick to, with good reason. Software updates do come with an element of risk, and this risk has a habit of increasing on systems with more users and more packages. Sooner or later, something can go wrong. 
 
-> "Never touch a running system" is a mantra which many sysadmins and users around the world stick to, with good reason.
+But at the same time, no one wants to risk their currently running system. **"Never touch a running system"** is a mantra which many sysadmins and users around the world stick to, with good reason. Software updates do come with an element of risk, and this risk has a habit of increasing on systems with more users and more packages. Sooner or later, something can go wrong. 
+
+> "Never touch a running system" 
+>       *- Every Sysadmin, Ever*  
 
 This a problem we've long wrestled with in openSUSE & SUSE distributions. In Tumbleweed we release updates at a breakneck pace, hundreds of new packages a week. Users want and need these updates at close to that pace as they can handle, but want a minimal risk.  
 In the world of SUSE's Enterprise distributions, the demands are no easier. Mission Critical systems often have extensive solutions for high availabilty, so updates that disrupt the uptime of a *service* are more expensive than regularly rebooting a system. In these environments it's also very important that updates are applied perfectly. Changes should be applied completely with the system never left is an undefined or questionable state.
