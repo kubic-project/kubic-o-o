@@ -27,7 +27,7 @@ This goes some way to address some of the problems. Snapshots do provide a very 
 
 Traditional updates are run against the running system, and thusly they can impact and be impacted by services currently running. These dynamic variables can more likely lead to a situation where an update fails or only partially succeed, meaning that need for rolling back a system can actually happen more often than it should.
 
-## Introducting Transactional Updates
+## Introducing Transactional Updates
 
 Put simply, a Transactional Update is an update that is:
 
@@ -43,7 +43,7 @@ For a long time, some users have used the rather expensive approach of maintaini
 
 Looking for a more modern approach, there are solutions like ostree & snap which attempt to address these problems and bring atomic/transactional updates to their users.  
 
-These solutions are not without their benefits, but come with some key flaws which Transactional Updates avoid. Namely they require users, developers, and partnering software vendors to all learn new ways of managing their systems. Existing packages cannot be re-used, requiring either repackging or converstion. And existing repositories and other common package delivery mechanisms are no longer available.  
+These solutions are not without their benefits, but come with some key flaws which Transactional Updates avoid. Namely they require users, developers, and partnering software vendors to all learn new ways of managing their systems. Existing packages cannot be re-used, requiring either repackging or conversion. And existing repositories and other common package delivery mechanisms are no longer available.  
 
 All of this develops to a situation where adopters need to redesign their mindsets, systems, tools and company policies to work with these tools. And that is something Transactional Updates strives to avoid.
 
