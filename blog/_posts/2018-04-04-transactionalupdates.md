@@ -57,6 +57,8 @@ At the end of the update, assuming the update is successful, this completed snap
 
 If the update was unsuccessful, the snapshot is discarded and no change is made to the system. 
 
+One additional benefit of this approach, because all of the update processing is done in the running system, the boot time of the transactionally updated system is identical to the regular boot time of a non-transactional openSUSE system.
+
 ## The Icing on the Cake: Read-Only Root File System
 
 Transactional Updates never touch the running system, but **you might**, or so might other running software. On a system with a typical *read-write* root filesystem, this means that there are still variables which can interupt, interfere, or otherwise interact with a system update.  
