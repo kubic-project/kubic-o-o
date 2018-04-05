@@ -97,7 +97,7 @@ After any of the above, you need to `reboot` your system before the changes will
 Transactional Updates can be set to automatically run daily by simply running `systemctl enable --now transactional-update.timer`  
 
 This is rather useless however without some automated way of rebooting the system. Rather than a dumb `cron` job, we recommend using `rebootmgr`. It can be enabled by running `systemctl enable --now rebootmgr.service`.  
-By default `rebootmgr` will reboot a system sometime between 0330 and 0500 if an update is pending. Edit `/etc/rebootmgr.conf` to configure the `rebootmgr` service to change this maintenance window to suit your needs.
+By default `rebootmgr` will reboot a system sometime between 0330 and 0500 if an update is pending. Edit `/etc/rebootmgr.conf` to configure the `rebootmgr` service to change this maintenance window to suit your needs. `man rebootmgr.conf` provides details on the parameters available.
 
 That's it, you now have fully automated transactional system for whatever you want to run.
 
