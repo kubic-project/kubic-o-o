@@ -37,7 +37,7 @@ Put simply, a Transactional Update is an update that is:
 
 ## What about...?
 
-As customary when introducing anything new to the open source, it is only fair to acknowledge there are already alternatives to this new Transactional Update approach.
+As customary when introducing anything new to the open source world, it is only fair to acknowledge there are already alternatives to this new Transactional Update approach.
 
 For a long time, some users have used the rather expensive approach of maintaining multiple versions of their system in multiple partitions on disk, to be able to easily switch between them and address many of these problems. Of course it works, but it's rather expensive in terms of disk storage and maintenance effort.
 
