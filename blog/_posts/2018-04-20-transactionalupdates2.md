@@ -4,13 +4,13 @@ title:  "Transactional Updates: Refinements & FAQ"
 date:   2018-04-20 17:04:00 +0200
 author: Richard Brown
 ---
-After our post earlier a few weeks ago [announcing the availability of transactional updates in openSUSE Tumbleweed & Leap 15]({{ site.baseurl }}{% post_url 2018-04-04-transactionalupdates %}) we received a bunch of questions and feedback about this exciting feature.
+After our post a few weeks ago [announcing the availability of transactional updates in openSUSE Tumbleweed & Leap 15]({{ site.baseurl }}{% post_url 2018-04-04-transactionalupdates %}) we received a bunch of questions and feedback about this exciting feature.
 
 And of course we didn't rest on our laurels, and we've reacted by implementing as much as we can, as fast as we can. This post covers what we've done, and answers some of the common questions we got about this new feature in openSUSE.
 
 ## Renaming the system role
 
-When announcing the new system role that introduces Transactional Updates to the openSUSE distributions was named **Server with Transactional Updates and Read-Only Root Filesystem**.
+When announcing the new system role that introduces Transactional Updates to the openSUSE distributions it was named **Server with Transactional Updates and Read-Only Root Filesystem**.
 
 ![Screenshot](/assets/images/TransactionalRole.png)  
 *..it was quite a mouthful*
