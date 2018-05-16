@@ -9,13 +9,13 @@ But what are they, and why should you be interested?
 
 ## Patching isn't Easy
 
-Software updates have two common, but often conflicting requirements. Everyone should update as soon and as often as possible to ensure they are running the latest, most secured versions of their software. Without this, there is a greater risk of software failure or successful cyberattacks against your system.  
+Software updates have two common, but often conflicting requirements. Everyone should update as soon and as often as possible to ensure they are running the latest, most secured versions of their software. Without this, there is a greater risk of software failure or successful cyber attacks against your system.  
 
 But at the same time, no one wants to risk their currently running system. **"Never touch a running system"** is a mantra which many sysadmins and users around the world stick to, with good reason. Software updates do come with an element of risk, and this risk has a habit of increasing on systems with more users and more packages. Sooner or later, something can go wrong. 
 
 This is a problem we've long wrestled with in openSUSE & SUSE distributions. In Tumbleweed we release updates at a breakneck pace, hundreds of new packages a week. Users want and need these updates as close to that pace as they can handle, but want a minimal risk.
 
-In the world of SUSE's Enterprise distributions, the demands are no easier. Mission Critical systems often have extensive solutions for high availabilty, so updates that disrupt the uptime of a *service* are more expensive than regularly rebooting a system. In these environments it's also very important that updates are applied perfectly. Changes should be applied completely with the system never left is an undefined or questionable state.
+In the world of SUSE's Enterprise distributions, the demands are no easier. Mission Critical systems often have extensive solutions for high availability, so updates that disrupt the uptime of a *service* are more expensive than regularly rebooting a system. In these environments it's also very important that updates are applied perfectly. Changes should be applied completely with the system never left is an undefined or questionable state.
 
 ## Snapshots - The Beginning of the Answer
 
@@ -43,7 +43,7 @@ For a long time, some users have used the rather expensive approach of maintaini
 
 Looking for a more modern approach, there are solutions like ostree & snap which attempt to address these problems and bring atomic/transactional updates to their users.  
 
-These solutions are not without their benefits, but come with some key flaws which Transactional Updates avoid. Namely they require users, developers, and partnering software vendors to all learn new ways of managing their systems. Existing packages cannot be re-used, requiring either repackging or conversion. And existing repositories and other common package delivery mechanisms are no longer available.  
+These solutions are not without their benefits, but come with some key flaws which Transactional Updates avoid. Namely they require users, developers, and partnering software vendors to all learn new ways of managing their systems. Existing packages cannot be re-used, requiring either repackaging or conversion. And existing repositories and other common package delivery mechanisms are no longer available.  
 
 All of this develops to a situation where adopters need to redesign their mindsets, systems, tools and company policies to work with these tools. And that is something Transactional Updates strives to avoid.
 
@@ -61,17 +61,17 @@ One additional benefit of this approach, because all of the update processing is
 
 ## The Icing on the Cake: Read-Only Root File System
 
-Transactional Updates never touch the running system, but **you might**, or so might other running software. On a system with a typical *read-write* root filesystem, this means that there are still variables which can interupt, interfere, or otherwise interact with a system update.  
+Transactional Updates never touch the running system, but **you might**, or so might other running software. On a system with a typical *read-write* root filesystem, this means that there are still variables which can interrupt, interfere, or otherwise interact with a system update.  
 And yet in many cases, users do not need to be able to write to their root filesystem. This is why in Leap 15 and Tumbleweed we're excited to now offer the **Server with Transactional Updates & Read-Only Root Filesystem** System Role.
 
 ![Role Detail](/assets/images/TransactionalRole.png)  
 *Introducing the Transactional Server role*
 
-User configuration in `/etc` is writable by virtue of an automatically configured `overlayfs` and `/var` is writable for services as it is now a [seperate subvolume](https://lists.opensuse.org/opensuse-factory/2018-01/msg00390.html). 
+User configuration in `/etc` is writable by virtue of an automatically configured `overlayfs` and `/var` is writable for services as it is now a [separate subvolume](https://lists.opensuse.org/opensuse-factory/2018-01/msg00390.html). 
 
 This role shares many similarities with [SUSE CaaS Platform](https://www.suse.com/products/caas-platform/) and [Tumbleweed Kubic](http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-x86_64-Current.iso) where this feature is used by default to provide a **Container Host** or **Kubernetes Cluster Node**.
 
-But now the feature is also available in openSUSE Leap 15 and Tumbleweed there are even more possibilities. Do you want to be even more sure than usual that your **web or mail server** is patched regularly withot breaking? How about your **Virtualistion Host**? What about **IoT**? Maybe even [a transactional desktop?](https://rootco.de/2017-11-16-hackweek-2017-conclusion/).
+But now the feature is also available in openSUSE Leap 15 and Tumbleweed there are even more possibilities. Do you want to be even more sure than usual that your **web or mail server** is patched regularly without breaking? How about your **Virtualisation Host**? What about **IoT**? Maybe even [a transactional desktop?](https://rootco.de/2017-11-16-hackweek-2017-conclusion/).
 
 ## Using Transactional Updates
 
@@ -81,7 +81,7 @@ The easiest way to use transactional updates is to select the appropriate role d
 *System Role selection screen in openSUSE Leap 15*
 
 Once installed, just use `transactional-update` as the replacement for `zypper` or `yast` for upgrading, updating, or removing the software on your system.  
-The syntax should be rather familar:
+The syntax should be rather familiar:
 
 * Update your system with `transactional-update up` on Leap, or `transactional-update dup` on Tumbleweed
 * Install software with `transactional-update pkg in $foo` where `$foo` is the name of the package you want to install
