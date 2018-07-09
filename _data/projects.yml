@@ -19,11 +19,9 @@
 
     Follow the [instructions](https://github.com/kubic-project/automation/blob/master/caasp-kvm/README.md) to prepare your host system with the necessary dependencies (e.g. libvirt)
 
-    and then to build e.g. a 1 master, 2 worker cluster using the latest kubic image, run from the location `automation/caasp-kvm`:
+    and then to build e.g. a 1 master, 2 worker cluster using the latest kubic image, run from the automation/caasp-kvm directory:
 
-    ```bash
-    ./caasp-kvm --build -m 1 -w 2 --image channel://kubic
-    ```
+    ```bash ./caasp-kvm --build -m 1 -w 2 --image channel://kubic```
   links:
     - name: Instructions
       link: https://github.com/kubic-project/automation/blob/master/caasp-kvm/README.md
