@@ -42,8 +42,10 @@ kubeadm is already installed, but if you dive right in and run the `kubeadm init
 
 ![master-firstrun-errors](/assets/images/kubeadm-intro/master-firstrun-errors.png)
 
-You can rectify these by running `systemctl enable kubelet.service` and `systemctl enable --now docker.service` *NOTE: We aim to eliminate these steps in future updates, including those which will introduce [CRI-O as default](https://trello.com/c/EB1v0dVq/19-make-cri-o-default-for-k8s).*  
-Now run`kubeadm init --pod-network-cidr=10.244.0.0/16` *NOTE: The `--pod-network-cidr=10.244.0.0/16` parameter is for setting up our currently recommended `flannel` networking interface (aka CNI). This recommendation is likely to be changed in the future* 
+You can rectify these by running `systemctl enable kubelet.service` and `systemctl enable --now docker.service`. You also need to add `--cni-bin-dir=/usr/lib/cni` to the `KUBELET_EXTRA_ARGS=` line in `/etc/sysconfig/kublet`  
+*NOTE: We aim to eliminate these steps in future updates, including those which will introduce [CRI-O as default](https://trello.com/c/EB1v0dVq/19-make-cri-o-default-for-k8s).*  
+Now run`kubeadm init --pod-network-cidr=10.244.0.0/16` 
+*NOTE: The `--pod-network-cidr=10.244.0.0/16` parameter is for setting up our currently recommended `flannel` networking interface (aka CNI). This recommendation is likely to be changed in the future* 
 
 ![master-secondrun](/assets/images/kubeadm-intro/master-secondrun.png)
 
@@ -58,7 +60,7 @@ You can then setup flannel by running `kubectl apply -f https://raw.githubuserco
 
 ![master-cni](/assets/images/kubeadm-intro/master-cni.png)
 
-This now means your master is fully set up and ready for other nodes to join it. You install them the same way as your Master, selecting the **kubeadm Node** role just as before, and also running `systemctl enable kubelet.service` and `systemctl enable --now docker.service` after logging in as root after their first boot.
+This now means your master is fully set up and ready for other nodes to join it. You install them the same way as your Master, selecting the **kubeadm Node** role just as before, and also running `systemctl enable kubelet.service` and `systemctl enable --now docker.service` after logging in as root after their first boot. Don't forget to also add `--cni-bin-dir=/usr/lib/cni` to the `KUBELET_EXTRA_ARGS=` line in `/etc/sysconfig/kublet`.
 
 However, unlike on your master, you run the `kubeadm join` command by pasting the line that was presented at the end of the `kubeadm init` run from the Master.
 
