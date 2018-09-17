@@ -23,6 +23,8 @@ If you only need to run containers on a single server, then we recommend using [
 
 ## How to setup kubeadm on Kubic
 
+**NOTE:**  [This article is now out of date, please read the current documentation on our wiki](https://en.opensuse.org/Kubic:kubeadm).
+
 First, you need to download a [recent installation media of Kubic](https://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-x86_64-Current.iso). Any version after 20180815 should work. *NOTE: [Offical VM images](https://trello.com/c/JAN25aeM/12-official-kubic-vm-images) are something we're already working on, but are not ready yet*
 
 For installing on bare metal, burn this media to a DVD or USB Stick, and then boot your first system from it. For VMs or VPS providers just boot the iso directly.  
