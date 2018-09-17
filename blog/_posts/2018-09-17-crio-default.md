@@ -63,11 +63,11 @@ Podman also benefits from CRI-Os more lightweight architecture. Because every Po
 
 As excited as we are about CRI-O and Podman, we're not blind to the reality that many users just won't care and will be more comfortable running the well known `docker` tool.
 
-Therefore it will still be available and installed by default on Kubic MicroOS.  
+For the basic use case of running containers, both `docker` and `podman` can co-exist on a system safely. Therefore it will still be available and installed by default on Kubic **MicroOS**.  
 If you wish to remove it, just run `transactional-update pkg rm -u docker-kubic` and reboot.
 
-We will still support users who wish to use docker with Kubernetes. Because Docker doesn't co-exist with CRI-O quite so well in the Kubernetes scenario, we do not install it by default.  
-To swap from CRI-O to the docker runtime just run `transactional-update pkg in patterns-caasp-alt-container-runtime -cri-o-kubeadm-criconfig` and reboot.
+The Docker Engine doesn't co-exist with CRI-O quite so well in the Kubernetes scenario, so we do not install both by default on the **kubeadm system role**.  
+We still wish to support users wishing to use the Docker Engine with Kubernetes. Therefore to swap from CRI-O to the Docker Engine just run `transactional-update pkg in patterns-caasp-alt-container-runtime -cri-o-kubeadm-criconfig` and reboot.
 
 Alternatively if you're installing Kubic from the installation media you can deselect the "Container Runtime" and instead choose the "Alternative Container Runtime" pattern from the "Software" option as part of the installation.
 
