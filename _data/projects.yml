@@ -42,6 +42,6 @@
       color: success
 
     - name: Mailing List
-      link: https://lists.opensuse.org/opensuse-factory/
+      link: https://lists.opensuse.org/opensuse-kubic/
       icon: document-text
       color: primary
