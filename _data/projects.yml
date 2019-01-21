@@ -7,8 +7,12 @@
     
     * "Unconfigured Cluster Node" - openSUSE MicroOS plus an unconfigured Kubic Kubernetes Stack
   links:
-    - name: Download
+    - name: Download x86_64 ISO
       link: http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-x86_64-Current.iso
+      icon: download
+      color: primary
+    - name: Download AArch64 ISO
+      link: https://download.opensuse.org/ports/aarch64/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-aarch64-Current.iso
       icon: download
       color: primary
 
