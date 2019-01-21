@@ -7,25 +7,13 @@
     
     * "Unconfigured Cluster Node" - openSUSE MicroOS plus an unconfigured Kubic Kubernetes Stack
   links:
-    - name: Download
+    - name: Download x86_64 ISO
       link: http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-x86_64-Current.iso
       icon: download
       color: primary
-
-- name: Tumbleweed Kubic Devsetup
-  rundown: Hack on Kubic via KVM
-  description: >-
-    If you want to play around with Kubic in a libvirt/KVM environment you can use our automation tool to setup a cluster of X nodes in one go.
-
-    Follow the [instructions](https://github.com/kubic-project/automation/blob/master/caasp-kvm/README.md) to prepare your host system with the necessary dependencies (e.g. libvirt)
-
-    and then to build e.g. a 1 master, 2 worker cluster using the latest kubic image, run from the automation/caasp-kvm directory:
-
-    ```bash ./caasp-kvm --build -m 1 -w 2 --image channel://kubic```
-  links:
-    - name: Instructions
-      link: https://github.com/kubic-project/automation/blob/master/caasp-kvm/README.md
-      icon: arrow-forward
+    - name: Download AArch64 ISO
+      link: https://download.opensuse.org/ports/aarch64/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-aarch64-Current.iso
+      icon: download
       color: primary
 
 - name: MicroOS
@@ -39,22 +27,6 @@
       link: https://en.opensuse.org/Kubic:MicroOS
       icon: arrow-forward
       color: success
-
-- name: Velum
-  rundown: Dashboard for openSUSE & SUSE Container as a Service
-  description: >-
-   Velum is a dashboard that manages your SUSE CaaS Platform cluster. With Velum, you will be able to :
-
-   * Bootstrap a Kubernetes cluster with a simple click.
-   
-   * Manage your Kubernetes: cluster adding and removing nodes from your cluster, monitoring faulty nodes, etc.
-   
-   * Setup an update policy that suits your needs. SUSE CaaS Platform already provides a transparent and sensible procedure for updates that guarantees no downtime, but with Velum you will be able to further tune this.
-  links:
-    - name: Github
-      link: https://github.com/kubic-project/velum
-      icon: social-github
-      color: light
 
 - name: And much much more
   rundown: See all of our work on our projects on Github or join us in discussion at IRC and mailing list
