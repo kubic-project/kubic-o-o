@@ -5,7 +5,7 @@
     
     * openSUSE MicroOS
     
-    * "Unconfigured Cluster Node" - openSUSE MicroOS plus an unconfigured Kubic Kubernetes Stack
+    * kubeadm - kubeadm powered Kubernetes stack atop a openSUSE MicroOS base system
   links:
     - name: Download x86_64 ISO
       link: http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-x86_64-Current.iso
