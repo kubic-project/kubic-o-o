@@ -1,12 +1,16 @@
 - name: Tumbleweed Kubic
-  rundown: Container as a Service Platform based on Kubernetes atop openSUSE MicroOS
+  rundown: Multi-purpose Standalone & Kubernetes Container Operating System based on openSUSE MicroOS
   description: >-
     Tumbleweed-Kubic currently offers the following supported System Roles which can be selected during Installation
     
     * openSUSE MicroOS
     
-    * kubeadm - Kubernetes stack configured using kubeadm atop a openSUSE MicroOS base system
+    * kubeadm - Kubernetes stack configured using kubeadm atop an openSUSE MicroOS base system
   links:
+    - name: Systems Requirements
+      link: https://en.opensuse.org/Kubic:SystemRequirements
+      icon: arrow-forward
+      color: success
     - name: Download x86_64 ISO
       link: http://download.opensuse.org/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-x86_64-Current.iso
       icon: download
@@ -16,14 +20,26 @@
       icon: download
       color: primary
 
+- name: kubeadm
+  rundown: Certified Kubernetes Distribution using kubeadm atop an openSUSE MicroOS base system
+  description: >-
+    Kubernetes is an open-source system for automating deployment, scaling, and management of containerised applications.
+    Kubic uses kubeadm to provide an easy way of configuring a Kubernetes cluster across multiple machines, while the MicroOS base keeps your operating system updated automatically, with fully atomic rollbacks if required.
+    ![Certified Kubernetes](/assets/images/certified-kubernetes-color.svg)
+  links:
+    - name: kubeadm Documentation
+      link: https://en.opensuse.org/Kubic:kubeadm
+      icon: arrow-forward
+      color: success
+
 - name: MicroOS
   rundown: openSUSE Tumbleweed based OS providing Transactional (Atomic) Updates upon a read-only btrfs root filesystem
   description: >-
     Designed to host container workloads with automated administration & patching.
-    Installing the openSUSE MicroOS System Role from Kubic you get a quick, small environment for experimenting with Containers, or any other workload that benefits from Transactional Updates.
+    Installing the openSUSE MicroOS System Role from Kubic you get a quick, small environment for deploying Containers, or any other workload that benefits from Transactional Updates.
     MicroOS will also soon be offered as Virtual Machine Images
   links:
-    - name: Wiki
+    - name: MicroOS Documentation
       link: https://en.opensuse.org/Kubic:MicroOS
       icon: arrow-forward
       color: success

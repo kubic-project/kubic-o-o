@@ -1,7 +1,7 @@
 title: openSUSE Kubic
 name: Kubic
 email: opensuse-factory@opensuse.org
-description: Project maintaining multiple container-related technologies as part of the openSUSE Project
+description: Certified Kubernetes distribution & container-related technologies built by the openSUSE community
 baseurl: ""
 url: ""
 plugins:
