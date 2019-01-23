@@ -5,7 +5,7 @@
     
     * openSUSE MicroOS
     
-    * kubeadm - Kubernetes stack configured using kubeadm atop an openSUSE MicroOS base system
+    * kubeadm - Certified Kubernetes stack configured using kubeadm atop an openSUSE MicroOS base system
   links:
     - name: Systems Requirements
       link: https://en.opensuse.org/Kubic:SystemRequirements
@@ -20,12 +20,11 @@
       icon: download
       color: primary
 
-- name: kubeadm
+- name: kubeadm <img src="/assets/images/certified-kubernetes-color.svg" alt="Certified Kubernetes" width="140" align="right" />
   rundown: Certified Kubernetes Distribution using kubeadm atop an openSUSE MicroOS base system
   description: >-
     Kubernetes is an open-source system for automating deployment, scaling, and management of containerised applications.
-    Kubic uses kubeadm to provide an easy way of configuring a Kubernetes cluster across multiple machines, while the MicroOS base keeps your operating system updated automatically, with fully atomic rollbacks if required.
-    ![Certified Kubernetes](/assets/images/certified-kubernetes-color.svg)
+    Kubic uses kubeadm to provide an easy way of configuring a Kubernetes cluster across multiple machines, while our MicroOS base keeps your operating system updated automatically, with fully atomic rollbacks if required.
   links:
     - name: kubeadm Documentation
       link: https://en.opensuse.org/Kubic:kubeadm
@@ -45,11 +44,16 @@
       color: success
 
 - name: And much much more
-  rundown: See all of our work on our projects on Github or join us in discussion at IRC and mailing list
+  rundown: Please contribute to our projects on Github, the Open Build Service, or join us in discussion at IRC and mailing list
   links:
     - name: Github
       link: https://github.com/kubic-project
       icon: social-github
+      color: light
+
+    - name: OBS
+      link: https://build.opensuse.org/project/show/devel:kubic
+      icon: spanner
       color: light
 
     - name: IRC
