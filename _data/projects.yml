@@ -7,6 +7,10 @@
     
     * kubeadm - Certified Kubernetes stack configured using kubeadm atop an openSUSE MicroOS base system
   links:
+    - name: Install
+      link: https://en.openSUSE.org/Kubic:Installation
+      icon: media-play-outline
+      color: light
     - name: Systems Requirements
       link: https://en.opensuse.org/Kubic:SystemRequirements
       icon: arrow-forward
