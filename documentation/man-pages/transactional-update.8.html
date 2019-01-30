@@ -15,51 +15,55 @@
     h1:hover > a.headerlink, h2:hover > a.headerlink, h3:hover > a.headerlink, dt:hover > a.headerlink {
       visibility: visible;
     }
-  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.6</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
+  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.11</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
     updates.</p></div><div class="refsynopsisdiv"><a name="synopsis"></a><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...] [<em class="replaceable"><code>general-command</code></em>...] [<em class="replaceable"><code>package-command</code></em>
          [<em class="replaceable"><code>command-argument</code></em>...]
       ]</p></div><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...]  <em class="replaceable"><code>standalone-command</code></em> </p></div><p>transactional-update.service</p><p>transactional-update.timer</p></div><div class="refsect1"><a name="description"></a><h2 id="DESCRIPTION">DESCRIPTION<a class="headerlink" title="Permalink to this headline" href="#DESCRIPTION">¶</a></h2><p><span class="command"><strong>transactional-update</strong></span> updates the system
-in a transactional way, which means: it is atomic, so either the patches are
-fully applied or nothing is changed. The update does not influence your
+in a transactional way; this means updates are atomic, so either the patches
+are fully applied or nothing is changed. The update does not influence the
 running system and it can be rolled back. To activate the changes, the system
 needs to be rebooted.
 </p><p>
 To achieve this <span class="command"><strong>transactional-update</strong></span> is using Btrfs'
-snapshot mechanism.
-Before modifying any files - similar to
-<a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="http://snapper.io/manpages/snapper-zypp-plugin.html"><span class="citerefentry"><span class="refentrytitle">snapper-zypp-plugin</span>(8)</span></a>
-- a pair of pre / post snapshots of the current system is created using
-<a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="http://snapper.io/manpages/snapper.html"><span class="citerefentry"><span class="refentrytitle">snapper</span>(8)</span></a>.
-The "pre" snapshot will back up the current state of the system before the
-update and will not be modified any further, while the "post" snapshot will be
-used to perform the update.
+snapshot mechanism. Updates will be performed in a new snapshot of the root
+file system. The snapshot is created with
+<a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="http://snapper.io/manpages/snapper.html"><span class="citerefentry"><span class="refentrytitle">snapper</span>(8)</span></a>,
+for the update
+<a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="https://en.opensuse.org/SDB:Zypper_manual_(plain)"><span class="citerefentry"><span class="refentrytitle">zypper</span>(8)</span></a>
+is called with the <code class="option">-R</code> option pointing to the new snapshot.
+If no errors occured the snapshot will be set as the new default snapshot and
+set as read-only. In case of errors the snapshot will be deleted again.
 </p><p>
-If no errors occured the "post" snapshot will be set as the new default
-snapshot. In case of errors both snapshots will be deleted again.
+On <span class="emphasis"><em>read-only systems</em></span> each snapshot will have a
+corresponding /etc overlay located in
+/var/lib/overlay. As configuration files
+may be modified after a snapshot was created and before a reboot is performed
+(e.g. via configuration management software) the overlay file system will use
+multiple lower layers, i.e. changes in older layers will be visible in newer
+snapshots, but not vice versa. To keep the number of layers at a minimum and the
+amount of data stored in the overlays low the
+/etc state of the oldest still available
+snapshot is synchronized into the new root file system; unused overlays will be
+removed at a later time (see the <code class="option">cleanup</code> option).
+</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>
+If a file was changed both in the new snapshot (e.g. if a package installed a
+new version of the configuration file or used fillup-templates) and in the
+currently running system after creation of the new snapshot (e.g. if the
+administrator or configuration management software changed a file) only the
+version of the new snapshot will be visible. When rebooting into the new
+snapshot for the first time
+transactional-update-etc-cleaner.service will print a
+warning about such conflicts to the system log file.
+</div><p>
+Older transactional-update versions were using a single
+/etc overlay for all snapshots; a
+migration mechanism is in place, the directory will also be removed if no
+snapshot is using it any more.
 </p><p>
-On a <span class="emphasis"><em>read-only system</em></span> the contents of the
-/etc overlay file system will be
-synchronized into both snapshots; packages will thus be able to modify the
-production configuration files (e.g. via fillup-templates). Due to the
-read-only file system the only difference between the "pre" snapshot and the
-snapshot of the currently running system will be the contents of the
-/etc directory. On reboot all files
-of the /etc overlay will be purged
-(except if modified after snapshot creation), as those files are part of the
-snapshot's lower layer now.
-</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
-The following situations currently cannot be detected reliably when clearing
-the /etc overlay:
-</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-If a file or directory has been created since the last reboot and is then
-removed or renamed <span class="emphasis"><em>after</em></span> taking the snapshot, the
-file / directory may reappear after reboot and has to be deleted again.
-</p></li></ul></div><p>
-</p></div><p>
-Note that on a <span class="emphasis"><em>read-write system</em></span> all changes made to the
-running root filesystem after snapshot creation are lost after the next
-reboot. For this reason, after an successfull update, the system should be
-rebooted as fast as possible.
+On <span class="emphasis"><em>read-write systems</em></span> please be aware that all changes
+done to the running root filesystem after snapshot creation are lost after the
+next reboot. For this reason the system should be rebooted as fast as possible
+after an successfull update.
 </p><p>For easier maintenance of big clusters,
 <span class="command"><strong>transactional-update</strong></span> is run by
 <a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="https://www.freedesktop.org/software/systemd/man/systemd.timer.html"><span class="citerefentry"><span class="refentrytitle">systemd.timer</span>(5)</span></a>
@@ -77,6 +81,10 @@ for more information.
       algorithm set. This is to make sure, that old snapshots will be deleted
       by snapper. See the section about cleanup algorithms in
       <a href="http://snapper.io/manpages/snapper.html"><span class="citerefentry"><span class="refentrytitle">snapper</span>(8)</span></a>.
+      </p><p>
+	Also removes all unreferenced (and thus unused)
+	/etc overlay directories in
+	/var/lib/overlay.
       </p></dd><dt id="grub.cfg"><span class="term"><code class="option">grub.cfg</code></span><a class="headerlink" title="Permalink to this term" href="#grub.cfg">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
 	<a href="https://www.linux.org/docs/man8/grub2-mkconfig.html"><span class="citerefentry"><span class="refentrytitle">grub2-mkconfig</span>(8)</span></a>
 	is called to create a new /boot/grub2/grub.cfg
@@ -99,9 +107,10 @@ for more information.
 	unmounted and switched to read-only, a shell is started in the new
 	snapshot as chroot environment for testing and debugging.
       </p></dd></dl></div></div><div class="refsect2"><a name="pkg_commands"></a><h3 id="Package Commands">Package Commands<a class="headerlink" title="Permalink to this headline" href="#Package%20Commands">¶</a></h3><p>
-  Package Commands will invoke <span class="command"><strong>zypper</strong></span> to perform
-  actions on the RPM packages. Only one Package Command can be used at the
-  same time. Can be combined with any number of
+  Package Commands will invoke
+  <a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="https://en.opensuse.org/SDB:Zypper_manual_(plain)"><span class="citerefentry"><span class="refentrytitle">zypper</span>(8)</span></a>
+  to perform actions on the RPM packages. Only one Package Command can be used
+  at the same time. Can be combined with any number of
   <a class="link" href="#general_commands" title="General Commands">General Commands</a>.
 </p><p>
   By default commands usually invoked from scripts are called in
@@ -133,16 +142,30 @@ for more information.
 	On systems which are registered against the SUSE Customer Center (SCC)
 	or SMT, a migration to a new version of the installed products can be
 	made with this option.
-      </p></dd><dt id="pkg install &lt;RPM&gt; ... &lt;RPM&gt;"><span class="term"><code class="option">pkg install</code> <em class="replaceable"><code>&lt;RPM&gt; ... &lt;RPM&gt;</code></em></span><a class="headerlink" title="Permalink to this term" href="#pkg%20install%20&lt;RPM&gt;%20...%20&lt;RPM&gt;">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
-	A PTF or other packages in RPM format can be installed in the system.
-      </p></dd><dt id="pkg remove &lt;RPM&gt; ... &lt;RPM&gt;"><span class="term"><code class="option">pkg remove</code> <em class="replaceable"><code>&lt;RPM&gt; ... &lt;RPM&gt;</code></em></span><a class="headerlink" title="Permalink to this term" href="#pkg%20remove%20&lt;RPM&gt;%20...%20&lt;RPM&gt;">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
-	A PTF or other installed packages in RPM format can be removed from
-	the system.
-      </p></dd><dt id="pkg update &lt;RPM&gt; ... &lt;RPM&gt;"><span class="term"><code class="option">pkg update</code> <em class="replaceable"><code>&lt;RPM&gt; ... &lt;RPM&gt;</code></em></span><a class="headerlink" title="Permalink to this term" href="#pkg%20update%20&lt;RPM&gt;%20...%20&lt;RPM&gt;">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
-	Packages installed as RPMs can be updated.
-      </p></dd></dl></div></div></div><div class="refsect2"><a name="standalone_commands"></a><h3 id="Standalone Commands">Standalone Commands<a class="headerlink" title="Permalink to this headline" href="#Standalone%20Commands">¶</a></h3><div class="variablelist"><dl class="variablelist"><dt id="rollback
-    number"><span class="term"><code class="option">rollback</code>
-    [<span class="optional"><em class="replaceable"><code>number</code></em></span>]</span><a class="headerlink" title="Permalink to this term" href="#rollback%0A%20%20%20%20number">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
+      </p></dd><dt id="pkg command arguments"><span class="term"><code class="option">pkg</code> <em class="replaceable"><code>command</code></em> <em class="replaceable"><code>arguments</code></em></span><a class="headerlink" title="Permalink to this term" href="#pkg%20command%20arguments">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
+	Calls <span class="command"><strong>zypper</strong></span> with the given
+        <em class="replaceable"><code>command</code></em> and
+        <em class="replaceable"><code>arguments</code></em>. The arguments are typically one
+        or more package names, but can be any
+        <a href="https://en.opensuse.org/SDB:Zypper_manual_(plain)"><span class="citerefentry"><span class="refentrytitle">zypper</span>(8)</span></a>
+        parameter for the given command including options. The following
+        commands are supported:
+      </p><div class="variablelist"><dl class="variablelist"><dt id="install"><span class="term"><code class="option">install</code>, </span><span class="term"><code class="option">in</code></span><a class="headerlink" title="Permalink to this term" href="#install">¶</a></dt><dd><p>
+	      Installs additional software.
+	      See the <code class="option">install</code> description in the "Package
+              Management Commands" section of zypper's man page for all
+              available arguments.
+	    </p></dd><dt id="remove"><span class="term"><code class="option">remove</code>, </span><span class="term"><code class="option">rm</code></span><a class="headerlink" title="Permalink to this term" href="#remove">¶</a></dt><dd><p>
+	      Removes installed software.
+              See the <code class="option">remove</code> description in the "Package
+              Management Commands" section of zypper's man page for all
+              available arguments.
+	    </p></dd><dt id="update"><span class="term"><code class="option">update</code>, </span><span class="term"><code class="option">up</code></span><a class="headerlink" title="Permalink to this term" href="#update">¶</a></dt><dd><p>
+	      Update selected software.
+              See the <code class="option">update</code> description in the "Update
+              Management Commands" section of zypper's man page for all
+              available arguments.
+	    </p></dd></dl></div></dd></dl></div></div></div><div class="refsect2"><a name="standalone_commands"></a><h3 id="Standalone Commands">Standalone Commands<a class="headerlink" title="Permalink to this headline" href="#Standalone%20Commands">¶</a></h3><div class="variablelist"><dl class="variablelist"><dt id="rollback number"><span class="term"><code class="option">rollback</code> [<span class="optional"><em class="replaceable"><code>number</code></em></span>]</span><a class="headerlink" title="Permalink to this term" href="#rollback%20number">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
 	Sets the default root file system. On a read-only system the root
 	file system is set directly using <span class="command"><strong>btrfs</strong></span>. On
 	read-write systems
@@ -151,7 +174,7 @@ for more information.
 	the current root file system is made the new default root file system.
 	Otherwise the snapshot with <code class="option">number</code> is made the
 	new default root filesystem.
-      </p></dd></dl></div></div></div><div class="refsect1"><a name="options"></a><h2 id="OPTIONS">OPTIONS<a class="headerlink" title="Permalink to this headline" href="#OPTIONS">¶</a></h2><div class="variablelist"><dl class="variablelist"><dt id="--interactive, -i"><span class="term"><code class="option">--interactive, -i</code></span><a class="headerlink" title="Permalink to this term" href="#--interactive,%20-i">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Ignores package command categorization, calls zypper in interactive mode.</p></dd><dt id="--non-interactive, -n"><span class="term"><code class="option">--non-interactive, -n</code></span><a class="headerlink" title="Permalink to this term" href="#--non-interactive,%20-n">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Ignores package command categorization, calls zypper in non-interactive mode.</p></dd><dt id="--no-selfupdate"><span class="term"><code class="option">--no-selfupdate</code></span><a class="headerlink" title="Permalink to this term" href="#--no-selfupdate">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Skip checking for newer transactional-update versions.</p></dd><dt id="--quiet"><span class="term"><code class="option">--quiet</code></span><a class="headerlink" title="Permalink to this term" href="#--quiet">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Don't print warnings and informational messages to stdout.</p></dd><dt id="--help, -h"><span class="term"><code class="option">--help, -h</code></span><a class="headerlink" title="Permalink to this term" href="#--help,%20-h">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Display help and exit</p></dd><dt id="--version"><span class="term"><code class="option">--version</code></span><a class="headerlink" title="Permalink to this term" href="#--version">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Output version information and exit</p></dd></dl></div></div><div class="refsect1"><a name="important"></a><h2 id="IMPORTANT">IMPORTANT<a class="headerlink" title="Permalink to this headline" href="#IMPORTANT">¶</a></h2><p>
+      </p></dd></dl></div></div></div><div class="refsect1"><a name="options"></a><h2 id="OPTIONS">OPTIONS<a class="headerlink" title="Permalink to this headline" href="#OPTIONS">¶</a></h2><div class="variablelist"><dl class="variablelist"><dt id="--interactive"><span class="term"><code class="option">--interactive</code>, </span><span class="term"><code class="option">-i</code></span><a class="headerlink" title="Permalink to this term" href="#--interactive">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Ignores package command categorization, calls zypper in interactive mode.</p></dd><dt id="--non-interactive"><span class="term"><code class="option">--non-interactive</code>, </span><span class="term"><code class="option">-n</code></span><a class="headerlink" title="Permalink to this term" href="#--non-interactive">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Ignores package command categorization, calls zypper in non-interactive mode.</p></dd><dt id="--no-selfupdate"><span class="term"><code class="option">--no-selfupdate</code></span><a class="headerlink" title="Permalink to this term" href="#--no-selfupdate">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Skip checking for newer transactional-update versions.</p></dd><dt id="--quiet"><span class="term"><code class="option">--quiet</code></span><a class="headerlink" title="Permalink to this term" href="#--quiet">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Don't print warnings and informational messages to stdout.</p></dd><dt id="--help"><span class="term"><code class="option">--help</code>, </span><span class="term"><code class="option">-h</code></span><a class="headerlink" title="Permalink to this term" href="#--help">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Display help and exit</p></dd><dt id="--version"><span class="term"><code class="option">--version</code></span><a class="headerlink" title="Permalink to this term" href="#--version">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Output version information and exit</p></dd></dl></div></div><div class="refsect1"><a name="important"></a><h2 id="IMPORTANT">IMPORTANT<a class="headerlink" title="Permalink to this headline" href="#IMPORTANT">¶</a></h2><p>
   Only RPMs which are fully part of the root filesystem and
   /etc can be updated. There is also
   limited handling for adding files and directories to
