@@ -20,7 +20,7 @@
       icon: download
       color: primary
     - name: Download AArch64 ISO
-      link: https://download.opensuse.org/ports/aarch64/tumbleweed/iso/openSUSE-Tumbleweed-Kubic-DVD-aarch64-Current.iso
+      link: https://download.opensuse.org/ports/aarch64/tumbleweed/iso/openSUSE-Kubic-DVD-aarch64-Current.iso
       icon: download
       color: primary
 
