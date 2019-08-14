@@ -7,7 +7,7 @@ author: Thorsten Kukuk
 
 ## Intro
 
-If you think, this is too much text and sounds far too complicated or you are not interested in background informations: install openSUSE Kubic and go directly to the "Deploy Kubernetes" Section. There is no easier way to deploy Kubernetes!
+If you think, this is too much text and sounds far too complicated or you are not interested in background informations: install openSUSE Kubic and go directly to the "Deploy Kubernetes" Section. There is not really an easier way to deploy Kubernetes!
 
 ## Why should I want to use kubic-control?
 
