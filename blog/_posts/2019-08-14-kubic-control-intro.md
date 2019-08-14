@@ -63,7 +63,7 @@ from:
 The Kubic Admin Node is running _kubicd_, the _salt-master_ and the first kubernetes
 master node. The overhead for _kubicd_ and the _salt-master_ is very low, so
 you don't need a bigger machine because of this.
-During the first boot, some certificates are created for _kubicd_ in _/etc/kubicd/pki`:
+During the first boot, some certificates are created for _kubicd_ in _/etc/kubicd/pki_:
 
 - Kubic-Control-CA.key - the private CA key
 - Kubic-Control-CA.crt - the public CA key. This one is needed by kubicctl, too
@@ -164,6 +164,7 @@ under active development:
 * Enhance YaST2 to configure the salt-minion already during installation
 * Integration of ignition
 * Create "ready-to-run" images for all kinds of virtualisation consisting of the three system roles: Kubic Admin Node, Additional Kubic Node and Kubic Loadbalancer Node.
+* Add support to deploy container images from the devel:kubic:containers project
 
 As with any new software, especially stuff we're changing so quickly, there is a chance of bugs. If you try the steps in this guide and find any, please report them to our [Bugzilla](http://bugzilla.opensuse.org/enter_bug.cgi?product=openSUSE+Tumbleweed&format=guided) under the "Kubic" component.
 
