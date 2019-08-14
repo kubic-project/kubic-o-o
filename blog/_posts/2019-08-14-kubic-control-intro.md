@@ -112,7 +112,7 @@ are always the minion ID, which is normally the FQHN of that node:
 kubicctl node add node1,node2,...
 ```
 
-That's all! Run _kubectl get nodes_ to see your cluster!
+That's all. Two commands to setup your cluster! Run now _kubectl get nodes_ to see your cluster!
 
 ### Multi-Master Kubernetes
 
@@ -144,7 +144,7 @@ kubicctl node add node1,node2,...
 ```
 
 Now you have a running kubernetes cluster with 3 Master Nodes and several
-worker Nodes! _kubectl get nodes_ should show you the status of your Nodes.
+worker Nodes with only three commands! _kubectl get nodes_ should show you the status of your Nodes.
 
 ## Next Steps
 
