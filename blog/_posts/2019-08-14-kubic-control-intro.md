@@ -4,6 +4,11 @@ title:  "kubic-control for openSUSE Kubic"
 date:   2019-08-14 08:54:00 +0200
 author: Thorsten Kukuk
 ---
+
+## Intro
+
+If you think, this is too much text and sounds far too complicated or you are not interested in background informations: install openSUSE Kubic and go directly to the "Deploy Kubernetes" Section. There is no easier way to deploy Kubernetes!
+
 ## Why should I want to use kubic-control?
 
 We have [kubeadm]({{ site.baseurl }}{% post_url 2018-08-20-kubeadm-intro %}) on openSUSE Kubic to manage kubernetes, why do we need yet another management tool?
