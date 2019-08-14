@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "kubic-control and own kubernetes control plan on openSUSE Kubic"
+title:  "kubic-control for openSUSE Kubic"
 date:   2019-08-14 08:54:00 +0200
 author: Thorsten Kukuk
 ---
@@ -92,6 +92,59 @@ Node>" > /etc/salt/minion.d/master.conf`
 
 Afterwards, the haproxy needs to configured and enabled. In one of the next
 versions, kubic-control should be able to do this itself.
+
+## Deploy Kubernetes
+
+Normally, after you did install the _Kubic Admin Node_ and the needed numbers of
+_Additional Kubic Nodes_, deploying kubernetes is quite simple. Login to the
+Kubic Admin Node, accept the Keys of the salt-minions and run the following
+command to deploy the contral-plane on the master with _weave net_ as POD
+network and _kured_ to manage the reboot of nodes during an upgrade:
+
+```
+kubicctl init
+```
+
+Now we only need the worker nodes, who will run our workload. The Node names
+are always the minion ID, which is normally the FQHN of that node:
+
+```
+kubicctl node add node1,node2,...
+```
+
+That's all! Run _kubectl get nodes_ to see your cluster!
+
+### Multi-Master Kubernetes
+
+Setting up a control-plane with three master nodes (kubic-control currently
+allows any number of control-plane nodes, but this should be at minimum three
+and an uneven number of nodes!) is quite as simple.
+
+At first, you need to setup a loadbalancer if you don't have one in the
+network for the kubernetes API. That's currently a manual process, but will
+also be handled by kubernetes-control in the near future.
+
+Afterwards setup the initial master, where "load.balancer.dns" is the DNS
+name, under which the kubernetes API servers should be reacheable:
+
+```
+kubicctl init  --multi-master load.balancer.dns
+```
+
+Now add more master nodes:
+
+```
+kubicctl node add --type master master2,master3
+```
+
+And the worker Nodes:
+
+```
+kubicctl node add node1,node2,...
+```
+
+Now you have a running kubernetes cluster with 3 Master Nodes and several
+worker Nodes! _kubectl get nodes_ should show you the status of your Nodes.
 
 ## Next Steps
 
