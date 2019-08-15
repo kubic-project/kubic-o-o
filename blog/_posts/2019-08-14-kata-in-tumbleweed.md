@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Kata Containers now available in Tumbleweed"
-date:   2019-08-14 11:00:00 +0200
+date:   2019-08-15 11:00:00 +0200
 author: Marco Vedovati
 ---
 
