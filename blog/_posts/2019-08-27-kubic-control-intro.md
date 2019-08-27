@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "kubic-control for openSUSE Kubic"
-date:   2019-08-14 08:54:00 +0200
+date:   2019-08-27 08:54:00 +0200
 author: Thorsten Kukuk
 ---
 
@@ -29,12 +29,7 @@ kubic-control consists of three binaries:
 - kubicctl, a cli interface
 - haproxycfg, a cli interface adjust haproxy.cfg for use as loadbalancer for the kubernetes API
 
-The communication is encrypted, the kubicctl command can run on any
-machine. The user authenticates with his certificate, using RBAC to determine
-if the user is allowed to call this function. kubiccd will use kubeadm and
-kubectl to deploy and manage the cluster. So the admin can at everytime modify
-the cluster with this commands, too, there is no hidden state-database except
-for the informations necessary for a kubernetes multi-master/HA setup.
+The communication is encrypted, the kubicctl command can run on any machine. The user authenticates with his certificate, using RBAC to determine if the user is allowed to call this function. kubiccd will use kubeadm and kubectl to deploy and manage the cluster. So the admin can at everytime modify the cluster with this commands, too, there is no hidden state-database except for the informations necessary for a kubernetes multi-master/HA setup.
 
 ## Requirementes
 
@@ -45,8 +40,7 @@ Mainly generic requirements by kubernetes itself:
 - The Kubernetes master node(s) must have valid Fully-Qualified Domain Names (FQDNs), which can be resolved both by all other nodes and from other networks which need to access the cluster.
 - Since Kubernetes mainly works with certificates and tokens, the time on all Nodes needs to be always in sync. Else communication inside the cluster will break.
 
-As salt is used for the communication, the Admin Node needs to run a
-salt-master and all other nodes needs to be configured as salt-minion.
+As salt is used for the communication, the Admin Node needs to run a salt-master and all other nodes needs to be configured as salt-minion.
 
 ## Installation
 
@@ -60,9 +54,7 @@ from:
 
 ### Kubic Admin Node
 
-The Kubic Admin Node is running _kubicd_, the _salt-master_ and the first kubernetes
-master node. The overhead for _kubicd_ and the _salt-master_ is very low, so
-you don't need a bigger machine because of this.
+The Kubic Admin Node is running _kubicd_, the _salt-master_ and the first kubernetes master node. The overhead for _kubicd_ and the _salt-master_ is very low, so you don't need a bigger machine because of this.
 During the first boot, some certificates are created for _kubicd_ in _/etc/kubicd/pki_:
 
 - Kubic-Control-CA.key - the private CA key
@@ -81,22 +73,14 @@ Please take care of this certificates and store them secure, this are the passwo
 
 Additional Kubic Nodes will become either additional master nodes for HA of
 the kubernetes API, or worker nodes. The procedure is in both cases the same:
-- Install the Additional Kubic Node system role
-- Configure salt-minion: `echo "master: <FQHN of salt-master/Kubic Admin
-Node>" > /etc/salt/minion.d/master.conf`
-- Start salt with _systemctl enable --now salt-minion_
+- Install the Additional Kubic Node system role. At some point during the workflow, you need to enter the hostname or IP address of the Kubic Admin Node for the salt-minion.
 - Accept the salt-minion on the Kubic Admin Node with _salt-key -A_
 
 ### Kubic Loadbalancer Node
 
-The Kubic Loadbalancer Node system role installs a MicroOS without container runtime but haproxy instead. This system role is currently under development and not yet fully functional. After installation, the salt-minion needs to be configured:
-- Configure salt-minion: `echo "master: <FQHN of salt-master/Kubic Admin
-Node>" > /etc/salt/minion.d/master.conf`
-- Start salt with _systemctl enable --now salt-minion_
-- Accept the salt-minion on the Kubic Admin Node with _salt-key -A_
+The Kubic Loadbalancer Node system role installs a MicroOS without container runtime but haproxy instead. During installation, you need to provide the hostname or IP address of the Kubic Admin Node for the salt minion. Accept the salt-minion on the Kubic Admin Node with _salt-key -A_
 
-Afterwards, the haproxy needs to configured and enabled. In one of the next
-versions, kubic-control should be able to do this itself.
+Afterwards, the haproxy needs to configured and enabled. In one of the next versions, kubic-control should be able to do this itself.
 
 ## Deploy Kubernetes
 
@@ -161,7 +145,6 @@ under active development:
 * Install new nodes with yomi
 * Certificate handling
 * Extend support and handling of add-ons, including rolling updates
-* Enhance YaST2 to configure the salt-minion already during installation
 * Integration of ignition
 * Create "ready-to-run" images for all kinds of virtualisation consisting of the three system roles: Kubic Admin Node, Additional Kubic Node and Kubic Loadbalancer Node.
 * Add support to deploy container images from the devel:kubic:containers project
