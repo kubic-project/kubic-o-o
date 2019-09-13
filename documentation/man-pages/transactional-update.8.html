@@ -15,7 +15,7 @@
     h1:hover > a.headerlink, h2:hover > a.headerlink, h3:hover > a.headerlink, dt:hover > a.headerlink {
       visibility: visible;
     }
-  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.15</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
+  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.16</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
     updates.</p></div><div class="refsynopsisdiv"><a name="synopsis"></a><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...] [<em class="replaceable"><code>general-command</code></em>...] [<em class="replaceable"><code>package-command</code></em>
          [<em class="replaceable"><code>command-argument</code></em>...]
       ]</p></div><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...]  <em class="replaceable"><code>standalone-command</code></em> </p></div><p>transactional-update.service</p><p>transactional-update.timer</p></div><div class="refsect1"><a name="description"></a><h2 id="DESCRIPTION">DESCRIPTION<a class="headerlink" title="Permalink to this headline" href="#DESCRIPTION">¶</a></h2><p><span class="command"><strong>transactional-update</strong></span> updates the system
@@ -71,9 +71,13 @@ in regular intervals. The specific time can be configured in
 /etc/systemd/system/transactional-update.timer.d/local.conf. See
 <a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html"><span class="citerefentry"><span class="refentrytitle">systemd.unit</span>(5)</span></a>
 for more information.
-</p></div><div class="refsect1"><a name="commands"></a><h2 id="COMMANDS">COMMANDS<a class="headerlink" title="Permalink to this headline" href="#COMMANDS">¶</a></h2><div class="refsect2"><a name="general_commands"></a><h3 id="General Commands">General Commands<a class="headerlink" title="Permalink to this headline" href="#General%20Commands">¶</a></h3><p>
+</p></div><div class="refsect1"><a name="commands"></a><h2 id="COMMANDS">COMMANDS<a class="headerlink" title="Permalink to this headline" href="#COMMANDS">¶</a></h2><p>
+  If none of the following commands is given <code class="option">up</code> will be
+  assumed.
+</p><div class="refsect2"><a name="general_commands"></a><h3 id="General Commands">General Commands<a class="headerlink" title="Permalink to this headline" href="#General%20Commands">¶</a></h3><p>
   General Commands can be used together in any combination; additionally they
   can be extended with one <a class="link" href="#pkg_commands" title="Package Commands">Package Command</a>.
+  The order of the General Commands doesn't matter.
 </p><div class="variablelist"><dl class="variablelist"><dt id="cleanup"><span class="term"><code class="option">cleanup</code></span><a class="headerlink" title="Permalink to this term" href="#cleanup">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>If the current root filesystem is identical to the active root
       filesystem (means after a reboot, before
       <span class="command"><strong>transactional-update</strong></span> creates a new snapshot with
@@ -96,12 +100,16 @@ for more information.
       </p></dd><dt id="kdump"><span class="term"><code class="option">kdump</code></span><a class="headerlink" title="Permalink to this term" href="#kdump">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
 	A new initrd for kdump is created in a snapshot.
       </p></dd><dt id="reboot"><span class="term"><code class="option">reboot</code></span><a class="headerlink" title="Permalink to this term" href="#reboot">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
-	If a new snapshot with updates was created, the system should be
-	rebooted. This option will trigger the necessary reboot. If the
+	Trigger a reboot after updating the system.
+      </p><p>
+	Several different reboot methods are supported, configurable via the
+	<code class="option">REBOOT_METHOD</code> configuration option in
+	<a href="transactional-update.conf.5.html"><span class="citerefentry"><span class="refentrytitle">transactional-update.conf</span>(5)</span></a>.
+	By default
 	<a href="rebootmgrd.8.html"><span class="citerefentry"><span class="refentrytitle">rebootmgrd</span>(8)</span></a>
-	is running, <span class="command"><strong>transactional-update</strong></span> will tell the
-	daemon to reboot the system according to the configured policies. Else
-	<span class="command"><strong>systemctl reboot</strong></span> is called.
+	will be used to reboot the system according to the configured policies
+	if the service is running, otherwise <span class="command"><strong>systemctl reboot</strong></span>
+	will be called.
       </p></dd><dt id="shell"><span class="term"><code class="option">shell</code></span><a class="headerlink" title="Permalink to this term" href="#shell">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
 	Opens a shell to execute commands like zypper manually.
 	After all actions are done, before the snapshot with the changes is
@@ -121,9 +129,10 @@ for more information.
   <code class="option">--interactive</code> respectively the
   <code class="option">--non-interactive</code> options.
 </p><p>
-  Note that when using Package Commands non-interactively and combining them
-  with <a class="link" href="#general_commands" title="General Commands">General Commands</a> the General
-  Commands will only be executed if the Package Command updated any packages.
+  To facilitate scripting Package Commands will exit early if no packages were
+  updated; if combined with
+  <a class="link" href="#general_commands" title="General Commands">General Commands</a> those will not be
+  executed any more in that case.
 </p><div class="refsect3"><a name="ni_pkg_commands"></a><h4>Non-interactive Package Commands</h4><div class="variablelist"><dl class="variablelist"><dt id="dup"><span class="term"><code class="option">dup</code></span><a class="headerlink" title="Permalink to this term" href="#dup">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
 	If new updates are available, a new snapshot is created and
 	<span class="command"><strong>zypper dup --no-allow-vendor-change</strong></span> is used to
