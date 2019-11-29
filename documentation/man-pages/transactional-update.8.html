@@ -15,7 +15,7 @@
     h1:hover > a.headerlink, h2:hover > a.headerlink, h3:hover > a.headerlink, dt:hover > a.headerlink {
       visibility: visible;
     }
-  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.17</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
+  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.20</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
     updates.</p></div><div class="refsynopsisdiv"><a name="synopsis"></a><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...] [<em class="replaceable"><code>general-command</code></em>...] [<em class="replaceable"><code>package-command</code></em>
          [<em class="replaceable"><code>command-argument</code></em>...]
       ]</p></div><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...]  <em class="replaceable"><code>standalone-command</code></em> </p></div><p>transactional-update.service</p><p>transactional-update.timer</p></div><div class="refsect1"><a name="description"></a><h2 id="DESCRIPTION">DESCRIPTION<a class="headerlink" title="Permalink to this headline" href="#DESCRIPTION">¶</a></h2><p><span class="command"><strong>transactional-update</strong></span> updates the system
@@ -25,12 +25,13 @@ running system and it can be rolled back. To activate the changes, the system
 needs to be rebooted.
 </p><p>
 To achieve this <span class="command"><strong>transactional-update</strong></span> is using Btrfs'
-snapshot mechanism. Updates will be performed in a new snapshot of the root
-file system. The snapshot is created with
-<a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="http://snapper.io/manpages/snapper.html"><span class="citerefentry"><span class="refentrytitle">snapper</span>(8)</span></a>,
-for the update
+snapshot mechanism, combined with the default distribution tools. Whenever an
+update of the root file system is going to be performed,
+<a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="http://snapper.io/manpages/snapper.html"><span class="citerefentry"><span class="refentrytitle">snapper</span>(8)</span></a>
+will create a new snapshot of the root file system first. This new snapshot is
+then used to perform the update, e.g. by calling
 <a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="https://en.opensuse.org/SDB:Zypper_manual_(plain)"><span class="citerefentry"><span class="refentrytitle">zypper</span>(8)</span></a>
-is called with the <code class="option">-R</code> option pointing to the new snapshot.
+with the <code class="option">-R</code> option pointing to the new snapshot.
 If no errors occured the snapshot will be set as the new default snapshot and
 set as read-only. In case of errors the snapshot will be deleted again.
 </p><p>
@@ -46,12 +47,11 @@ amount of data stored in the overlays low the
 snapshot is synchronized into the new root file system; unused overlays will be
 removed at a later time (see the <code class="option">cleanup</code> option).
 </p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>
-If a file was changed both in the new snapshot (e.g. if a package installed a
-new version of the configuration file or used fillup-templates) and in the
-currently running system after creation of the new snapshot (e.g. if the
-administrator or configuration management software changed a file) only the
-version of the new snapshot will be visible. When rebooting into the new
-snapshot for the first time
+If a file in /etc has been changed
+during the update and is <span class="emphasis"><em>also</em></span> changed in the running
+system after the snapshot has been taken, then only the version of the new
+snapshot will be visible after a reboot.
+When booting into the new snapshot for the first time
 transactional-update-etc-cleaner.service will print a
 warning about such conflicts to the system log file.
 </div><p>
