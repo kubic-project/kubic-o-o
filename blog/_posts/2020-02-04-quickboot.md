@@ -50,7 +50,7 @@ to fully configure and setup all configured interfaces, which includes DHCPv4 an
 This is directly used as state for `network.service` and thus `network.target`.
 There is no distinction between `network.service` and `network-online.target` by wicked.
 To make the bootup quicker, switching to NetworkManager is an option,
-which interprets `network.service` in a more async way and thus is much quicker to into the `active` state.
+which interprets `network.service` in a more async way and thus is much quicker to reach the `active` state.
 Note that with DHCP, switching between wicked and NM might result in a different IP address!
 
 ```
