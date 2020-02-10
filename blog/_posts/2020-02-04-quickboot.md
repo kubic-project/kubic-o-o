@@ -169,8 +169,8 @@ Fortunately, this is easy to fix by rebuilding the kernel with a custom config. 
 openSUSE kernel in OBS, it spits out an .rpm with a working binary.
 
 ```
-# zypper ar obs://home:favogt:quickboot/ home:favogt:quickboot
-# zypper in --from home:favogt:quickboot kernel-kvmsmall
+# zypper ar obs://devel:kubic:quickboot/ devel:kubic:quickboot
+# zypper in --from devel:kubic:quickboot kernel-kvmsmall
 ```
 
 `kernel-kvmsmall` does not have all kernel features enabled (not even as modules), which means that in
@@ -289,8 +289,8 @@ for kernels which have support for the root filesystem built-in. It takes care o
 and `init` parameters properly as well. The boot options with initrd are still there, as failsafe.
 
 ```
-# zypper ar obs://home:favogt:quickboot/openSUSE_Tumbleweed home:favogt:quickboot
-# transactional-update initrd shell pkg in --from home:favogt:quickboot kernel-kvmsmall noinitrd
+# zypper ar obs://devel:kubic:quickboot/openSUSE_Tumbleweed devel:kubic:quickboot
+# transactional-update initrd shell pkg in --from devel:kubic:quickboot kernel-kvmsmall noinitrd
 ...
 transactional update # grub2-set-default 0
 transactional update # exit
