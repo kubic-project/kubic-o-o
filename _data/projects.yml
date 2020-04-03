@@ -1,7 +1,7 @@
-- name: Tumbleweed Kubic
+- name: Kubic
   rundown: Multi-purpose Standalone & Kubernetes Container Operating System based on openSUSE MicroOS
   description: >-
-    Tumbleweed-Kubic currently offers the following supported System Roles which can be selected during Installation
+    openSUSE Kubic currently offers the following supported System Roles which can be selected during Installation
     
     * openSUSE MicroOS
     
