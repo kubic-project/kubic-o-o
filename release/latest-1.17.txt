@@ -1,1 +1,1 @@
-latest.txt
+v1.17.2
