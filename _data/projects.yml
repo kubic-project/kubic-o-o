@@ -2,9 +2,9 @@
   rundown: Multi-purpose Standalone & Kubernetes Container Operating System based on openSUSE MicroOS
   description: >-
     openSUSE Kubic currently offers the following supported System Roles which can be selected during Installation
-    
+
     * openSUSE MicroOS
-    
+
     * kubeadm - Certified Kubernetes stack configured using kubeadm atop an openSUSE MicroOS base system
   links:
     - name: Install
@@ -46,6 +46,18 @@
       link: https://en.opensuse.org/Kubic:MicroOS
       icon: arrow-forward
       color: success
+    - name: Systems Requirements
+      link: https://en.opensuse.org/Kubic:SystemRequirements
+      icon: arrow-forward
+      color: success
+    - name: Download x86_64 ISO
+      link: http://download.opensuse.org/tumbleweed/iso/openSUSE-MicroOS-DVD-x86_64-Current.iso
+      icon: download
+      color: primary
+    - name: Download AArch64 ISO
+      link: https://download.opensuse.org/ports/aarch64/tumbleweed/iso/openSUSE-MicroOS-DVD-aarch64-Current.iso
+      icon: download
+      color: primary
 
 - name: And much much more
   rundown: Please contribute to our projects on Github, the Open Build Service, or join us in discussion at IRC and mailing list
