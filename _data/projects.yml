@@ -36,13 +36,14 @@
       color: success
 
 - name: MicroOS
-  rundown: openSUSE Tumbleweed based OS providing Transactional (Atomic) Updates upon a read-only btrfs root filesystem
+  rundown: Micro Service OS providing Transactional (Atomic) Updates upon a read-only btrfs root filesystem
   description: >-
     Designed to host container workloads with automated administration & patching.
-    Installing the openSUSE MicroOS System Role from Kubic you get a quick, small environment for deploying Containers, or any other workload that benefits from Transactional Updates.
-    MicroOS will also soon be offered as Virtual Machine Images
+    Installing openSUSE MicroOS you get a quick, small environment for
+  deploying Containers, or any other workload that benefits from Transactional
+  Updates. As rolling release distribution the software is always up-to-date.
   links:
-    - name: MicroOS Documentation
+    - name: Documentation
       link: https://en.opensuse.org/Kubic:MicroOS
       icon: arrow-forward
       color: success
