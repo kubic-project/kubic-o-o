@@ -6,7 +6,7 @@ author: Richard Brown
 ---
 ## kubeadm now available in Kubic
 
-As discussed in [our recent announcement]({{ site.baseurl }}{% post_url 2018-08-09-newdirection %}) we've been working hard in our new direction, integrating [kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/) as a primary method of setting up a Kubernetes cluster on openSUSE Kubic.
+As discussed in [our recent announcement]({{ site.baseurl }}{% post_url blog/2018-08-09-newdirection %}) we've been working hard in our new direction, integrating [kubeadm](https://kubernetes.io/docs/setup/independent/install-kubeadm/) as a primary method of setting up a Kubernetes cluster on openSUSE Kubic.
 
 After this short time, we're proud to already be able to share that as of Snapshot 20180815 released this weekend, openSUSE Kubic now has a working kubeadm solution out of the box. This blog post provides a brief guide on how to use it in it's current form, and some sneak peaks about where we plan on improving and changing things going forward.
 
@@ -19,7 +19,7 @@ Designed to operate across a cluster of machines, VMs, or cloud instances, Kuber
 
 Put simply, if you want to run containers across multiple servers in a coordinated way, you probably want to use Kubernetes, and kubeadm is the way the Kubic project recommends for setting up Kubernetes.
 
-If you only need to run containers on a single server, then we recommend using [MicroOS](https://en.opensuse.org/Kubic:MicroOS), which offers both the [Podman]({{ site.baseurl }}{% post_url 2018-03-25-podman %}) and Docker container runtimes for running containers on a stand-alone system.
+If you only need to run containers on a single server, then we recommend using [MicroOS](https://en.opensuse.org/Kubic:MicroOS), which offers both the [Podman]({{ site.baseurl }}{% post_url blog/2018-03-25-podman %}) and Docker container runtimes for running containers on a stand-alone system.
 
 ## How to setup kubeadm on Kubic
 

@@ -31,7 +31,7 @@ Our experience with btrfs and [snapper](http://snapper.io) means that even in th
 
 With Transactional Updates, we ensure that no change ever happens to a running system. This futher guarantees that any rollback can return a system to a clean state in a single atomic operation.
 
-In [Kubic](https://kubic.opensuse.org), we leverage all of this to build an excellent container operating system, providing users with the latest versions of exciting new tools like [Podman]({{ site.baseurl }}{% post_url 2018-03-25-podman %}), [CRI-O]({{ site.baseurl }}{% post_url 2018-09-17-crio-default %}), Buildah, and (of course) Kubernetes.
+In [Kubic](https://kubic.opensuse.org), we leverage all of this to build an excellent container operating system, providing users with the latest versions of exciting new tools like [Podman]({{ site.baseurl }}{% post_url blog/2018-03-25-podman %}), [CRI-O]({{ site.baseurl }}{% post_url blog/2018-09-17-crio-default %}), Buildah, and (of course) Kubernetes.
 
 We're keeping up with all of those fast moving upstream projects, often releasing our packages within days or sometimes even hours of an upstream release.  
 

@@ -38,7 +38,7 @@ Given one of the main roles of Kubic is to run Kubernetes, as of today, Kubic's 
 
 [Our documentation has been updated](https://en.opensuse.org/Kubic:kubeadm) to reflect the new CRI-O way of doing things.
 
-The simplest way of describing it would be that we now have less steps than [before]({{ site.baseurl }}{% post_url 2018-08-20-kubeadm-intro %}).  
+The simplest way of describing it would be that we now have less steps than [before]({{ site.baseurl }}{% post_url blog/2018-08-20-kubeadm-intro %}).  
 **You can now initialise your master node with a single command immediately after installation.**  
 But you need to remember to add `--cri-socket=/var/run/crio/crio.sock` to your `kubeadm init` and `join` commands. *(We're looking into ways to streamline this)*. 
 
@@ -50,7 +50,7 @@ In order to make use of CRI-O without Kubernetes, you need a command-line tool, 
 
 ## Podman
 
-[Podman]({{ site.baseurl }}{% post_url 2018-03-25-podman %}) has been available in Tumbleweed & Kubic for some time. Put simply, it is to CRI-O what the Docker CLI tool is to the Docker Engine daemon. It even has a very similar syntax.
+[Podman]({{ site.baseurl }}{% post_url blog/2018-03-25-podman %}) has been available in Tumbleweed & Kubic for some time. Put simply, it is to CRI-O what the Docker CLI tool is to the Docker Engine daemon. It even has a very similar syntax.
 
 - Use `podman run` to run containers in the same way you'd expect from `docker run`
 - `podman pull` pulls containers from registries, just like `docker pull`, and by default our `podman` is configured to use the same Docker Hub as many users would expect.

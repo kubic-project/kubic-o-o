@@ -9,11 +9,11 @@
   links:
     - name: Install
       link: https://en.openSUSE.org/Kubic:Installation
-      icon: media-play-outline
+      icon: install
       color: light
     - name: Systems Requirements
       link: https://en.opensuse.org/Kubic:SystemRequirements
-      icon: arrow-forward
+      icon: cpu
       color: success
     - name: Download x86_64 ISO
       link: http://download.opensuse.org/tumbleweed/iso/openSUSE-Kubic-DVD-x86_64-Current.iso
@@ -32,7 +32,7 @@
   links:
     - name: kubeadm Documentation
       link: https://en.opensuse.org/Kubic:kubeadm
-      icon: arrow-forward
+      icon: documentation
       color: success
 
 - name: MicroOS
@@ -43,11 +43,11 @@
   links:
     - name: Documentation
       link: https://en.opensuse.org/Kubic:MicroOS
-      icon: arrow-forward
+      icon: documentation
       color: success
     - name: Systems Requirements
       link: https://en.opensuse.org/Kubic:SystemRequirements
-      icon: arrow-forward
+      icon: cpu
       color: success
     - name: Download x86_64 ISO
       link: http://download.opensuse.org/tumbleweed/iso/openSUSE-MicroOS-DVD-x86_64-Current.iso
@@ -63,7 +63,7 @@
   links:
     - name: Github
       link: https://github.com/kubic-project
-      icon: social-github
+      icon: github
       color: light
 
     - name: OBS
@@ -73,10 +73,10 @@
 
     - name: IRC
       link: irc://irc.opensuse.org/#kubic
-      icon: message
+      icon: chat
       color: success
 
     - name: Mailing List
       link: https://lists.opensuse.org/opensuse-kubic/
-      icon: document-text
+      icon: mail
       color: primary
