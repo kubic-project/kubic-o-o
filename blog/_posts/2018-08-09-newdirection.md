@@ -12,14 +12,14 @@ It's been over a year since we started the Kubic project, and it's worth looking
 
 Much of our success has been in the area generally referred to as **MicroOS**, the part of the Kubic stack which provides a stable operating system that is **atomicly updated** for running containers.
 
-Not only is Kubic MicroOS now a fully integrated part of the openSUSE Tumbleweed release process, but our [Transactional Update stack has also been ported to regular openSUSE Tumbleweed and Leap]({{ site.baseurl }}{% post_url 2018-04-04-transactionalupdates %}).  
-Based on your feedback the new System Role [has been further refined]({{ site.baseurl }}{% post_url 2018-04-20-transactionalupdates2 %}) now includes fully automated updates out of the box. 
+Not only is Kubic MicroOS now a fully integrated part of the openSUSE Tumbleweed release process, but our [Transactional Update stack has also been ported to regular openSUSE Tumbleweed and Leap]({{ site.baseurl }}{% post_url blog/2018-04-04-transactionalupdates %}).  
+Based on your feedback the new System Role [has been further refined]({{ site.baseurl }}{% post_url blog/2018-04-20-transactionalupdates2 %}) now includes fully automated updates out of the box. 
 
 This collaboration is continuing, with many minor changes to the regular openSUSE installation process coming soon based on lessons learned with tuning the installation process in Kubic.
 
 # Reviewing our initial premise
 
-We haven't just been busy on the basesystem. Our efforts with [Rootless Containers](https://rootlesscontaine.rs) continue, and you can now use the "Docker-alternative" [Podman CRI-O]({{ site.baseurl }}{% post_url 2018-03-25-podman %}) in both Kubic and regular openSUSE. But when considering the [Initial Premise]({{ site.baseurl }}{% post_url 2018-03-22-introduction %}) of the Kubic project, it's probably safe to say we're not where we hoped to be by now.
+We haven't just been busy on the basesystem. Our efforts with [Rootless Containers](https://rootlesscontaine.rs) continue, and you can now use the "Docker-alternative" [Podman CRI-O]({{ site.baseurl }}{% post_url blog/2018-03-25-podman %}) in both Kubic and regular openSUSE. But when considering the [Initial Premise]({{ site.baseurl }}{% post_url blog/2018-03-22-introduction %}) of the Kubic project, it's probably safe to say we're not where we hoped to be by now.
 
 When we started in May 2017, SUSE were already well underway developing their first version of SUSE CaaS Platform. Alongside the general goal of making Kubic the easiest-to-live-with community Kubernetes distribution, a big part of the intial premise was to establish itself as a 'close upstream' community for SUSE CaaS Platform. In order set things up in a way similar to that you see between openSUSE Tumbleweed and SUSE Linux Enterprise), the plan was to rebase the SUSE CaaS Stack, including the Velum cluster bootstrapping tool onto the shared Kubic/Tumbleweed codebase. After a year, this goal has still proven elusive.
 

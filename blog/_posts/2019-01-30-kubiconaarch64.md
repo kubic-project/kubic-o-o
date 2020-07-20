@@ -198,7 +198,7 @@ Storing signatures
 #### Docker
 
 As docker is no more the default for Kubic, but still available, you need to start the docker service manually with `systemctl start docker`
-See [CRI-O is now our default container runtime interface]({{ site.baseurl }}{% post_url 2018-09-17-crio-default %}) blog post for more information.
+See [CRI-O is now our default container runtime interface]({{ site.baseurl }}{% post_url blog/2018-09-17-crio-default %}) blog post for more information.
 
 
 ##### Run the docker hello world container:

@@ -1,4 +1,23 @@
-- name: Kubic
+- name: MicroOS <img src="/assets/images/microos-logo.svg" alt="MicroOS Logo" height="80" align="right"/>
+  rundown: Micro Service OS providing Transactional (Atomic) Updates upon a read-only btrfs root filesystem
+  description: >-
+    Designed to host container workloads with automated administration & patching.
+    Installing openSUSE MicroOS you get a quick, small environment for deploying Containers, or any other workload that benefits from Transactional Updates. As rolling release distribution the software is always up-to-date.
+  links:
+    - name: Documentation
+      link: https://en.opensuse.org/Portal:MicroOS
+      icon: documentation
+      color: secondary
+    - name: System Requirements
+      link: https://en.opensuse.org/Kubic:SystemRequirements
+      icon: cpu
+      color: primary
+    - name: Downloads
+      link: https://en.opensuse.org/Portal:MicroOS/Downloads
+      icon: download
+      color: success
+
+- name: Kubic <img src="/assets/images/logo.svg" alt="Kubic Logo" height="100" align="right" />
   rundown: Multi-purpose Standalone & Kubernetes Container Operating System based on openSUSE MicroOS
   description: >-
     openSUSE Kubic currently offers the following supported System Roles which can be selected during Installation
@@ -7,22 +26,18 @@
 
     * kubeadm - Certified Kubernetes stack configured using kubeadm atop an openSUSE MicroOS base system
   links:
-    - name: Install
-      link: https://en.openSUSE.org/Kubic:Installation
-      icon: media-play-outline
-      color: light
-    - name: Systems Requirements
+    - name: Documentation
+      link: https://en.opensuse.org/Portal:Kubic
+      icon: documentation
+      color: secondary
+    - name: System Requirements
       link: https://en.opensuse.org/Kubic:SystemRequirements
-      icon: arrow-forward
+      icon: cpu
+      color: primary
+    - name: Downloads
+      link: https://en.opensuse.org/Portal:Kubic/Downloads
+      icon: download
       color: success
-    - name: Download x86_64 ISO
-      link: http://download.opensuse.org/tumbleweed/iso/openSUSE-Kubic-DVD-x86_64-Current.iso
-      icon: download
-      color: primary
-    - name: Download AArch64 ISO
-      link: https://download.opensuse.org/ports/aarch64/tumbleweed/iso/openSUSE-Kubic-DVD-aarch64-Current.iso
-      icon: download
-      color: primary
 
 - name: kubeadm <img src="/assets/images/certified-kubernetes-color.svg" alt="Certified Kubernetes" width="140" align="right" />
   rundown: Certified Kubernetes Distribution using kubeadm atop an openSUSE MicroOS base system
@@ -32,38 +47,15 @@
   links:
     - name: kubeadm Documentation
       link: https://en.opensuse.org/Kubic:kubeadm
-      icon: arrow-forward
-      color: success
-
-- name: MicroOS
-  rundown: Micro Service OS providing Transactional (Atomic) Updates upon a read-only btrfs root filesystem
-  description: >-
-    Designed to host container workloads with automated administration & patching.
-    Installing openSUSE MicroOS you get a quick, small environment for deploying Containers, or any other workload that benefits from Transactional Updates. As rolling release distribution the software is always up-to-date.
-  links:
-    - name: Documentation
-      link: https://en.opensuse.org/Kubic:MicroOS
-      icon: arrow-forward
-      color: success
-    - name: Systems Requirements
-      link: https://en.opensuse.org/Kubic:SystemRequirements
-      icon: arrow-forward
-      color: success
-    - name: Download x86_64 ISO
-      link: http://download.opensuse.org/tumbleweed/iso/openSUSE-MicroOS-DVD-x86_64-Current.iso
-      icon: download
-      color: primary
-    - name: Download AArch64 ISO
-      link: https://download.opensuse.org/ports/aarch64/tumbleweed/iso/openSUSE-MicroOS-DVD-aarch64-Current.iso
-      icon: download
-      color: primary
+      icon: documentation
+      color: secondary
 
 - name: And much much more
   rundown: Please contribute to our projects on Github, the Open Build Service, or join us in discussion at IRC and mailing list
   links:
     - name: Github
       link: https://github.com/kubic-project
-      icon: social-github
+      icon: github
       color: light
 
     - name: OBS
@@ -73,10 +65,10 @@
 
     - name: IRC
       link: irc://irc.opensuse.org/#kubic
-      icon: message
-      color: success
+      icon: chat
+      color: primary
 
     - name: Mailing List
       link: https://lists.opensuse.org/opensuse-kubic/
-      icon: document-text
+      icon: mail
       color: primary

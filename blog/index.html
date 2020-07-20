@@ -2,101 +2,17 @@
 layout: default
 title:	"Blog"
 ---
-<nav class="container-fluid" aria-label="breadcrumb">
-	<div class="breadcrumb row flex-nowrap justify-content-between align-items-center">
-		<span>
-			<ol class="breadcrumb p-0 mb-0">
-				<li class="breadcrumb-item"><a href="{{ "/" | prepend: site.baseurl}}"><img src="{{ "/assets/images/symbolic.svg" | prepend: site.baseurl }}" class="mr-1" style="height:1em; vertical-align:middle;">{{ site.name }}</a></li>
-				<li class="breadcrumb-item active" aria-current="page">Blog</li>
-			</ol>
-		</span>
-		<span class="d-flex justify-content-end align-items-center">
-		<a class="btn btn-danger" href="{{ "/feed.xml" | prepend: site.baseurl }}">
-		<span class="typcn typcn-rss"></span>
-		</a>
-		</span>
+<ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="{{ "/" | prepend: site.baseurl}}"><img src="/assets/images/symbolic.svg" class="mr-1" style="height:1em; vertical-align:middle;">{{ site.title_short }}</a></li>
+	<li class="breadcrumb-item active" aria-current="page">Blog</li>
+</ol>
+<div class="container my-3">
+	<div class="col-12 col-lg-9 mx-3 mx-auto">
+		<div class="row">
+			{% for post in paginator.posts %}
+			{% include single-post.html %}
+			{% endfor %}
+			{% include pagination.html %}
+		</div>
 	</div>
-</nav>
-<div class="container my-5">
-{% if paginator.page == 1 %}
-{% for post in paginator.posts limit:1 %}
-<h1 class="display-4 mb-0">
-	<span>
-	<a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-	</span>
-</h1>
-<p class="mb-2 ml-1 text-muted">{{ post.date | date: "%b %-d, %Y" }}</p>
-<div class="mx-3">
-	{{ post.content | truncatewords: 100}}
-	<p>
-		<a class="btn btn-primary" href="{{ post.url | prepend: site.baseurl }}">
-		<span class="typcn typcn-lg typcn-arrow-right"></span>
-		<span class="hidden-xs-down" lang="en">Read more</span>
-		</a>
-	</p>
 </div>
-<div style="border-bottom:1px solid #ddd; margin: 2rem;"></div>
-{% endfor %}
-<div class="row">
-	{% for post in paginator.posts offset:1 %}
-	<a class="text-dark col-md-4" href="{{ post.url | prepend: site.baseurl }}">
-		<div class="p-5 my-auto">
-			<h2 class="display-4 mb-0">
-				{{ post.title }}
-			</h2>
-			<p class="mb-1 ml-1 text-muted">{{ post.date | date: "%b %-d, %Y" }}</p>
-			{{ post.content | strip_html | truncatewords: 50}}
-		</div>
-	</a>
-	{% endfor %}
-</div>
-{% else %}
-<div class="row">
-	{% for post in paginator.posts %}
-	<a class="text-dark col-md-4" href="{{ post.url | prepend: site.baseurl }}">
-		<div class="p-5 my-auto">
-			<h2 class="display-4 mb-0">
-				{{ post.title }}
-			</h2>
-			<p class="mb-1 ml-1 text-muted">{{ post.date | date: "%b %-d, %Y" }}</p>
-			{{ post.content | strip_html | truncatewords: 50}}
-		</div>
-	</a>
-	{% endfor %}
-</div>
-{% endif %}
-<nav aria-label="Page navigation">
-	<ul class="pagination justify-content-center">
-	{% if paginator.previous_page %}
-		<li class="page-item">
-			<a class="page-link" href="{{ paginator.previous_page_path }}" aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span>
-				<span class="sr-only">Previous</span>
-			</a>
-		</li>
-	{% else %}
-		<li class="page-item disabled">
-			<p class="page-link">
-				<span aria-hidden="true">&laquo;</span>
-				<span class="sr-only">Previous</span>
-			</p>
-		</li>
-	{% endif %}
-		<li class="page-item disabled"><p class="page-link">{{ paginator.page }}</p></li>
-	{% if paginator.next_page %}
-		<li class="page-item">
-			<a class="page-link" href="{{ paginator.next_page_path }}" aria-label="Next">
-				<span aria-hidden="true">&raquo;</span>
-				<span class="sr-only">Next</span>
-			</a>
-		</li>
-	{% else %}
-		<li class="page-item disabled">
-			<p class="page-link">
-				<span aria-hidden="true">&raquo;</span>
-				<span class="sr-only">Next</span>
-			</p>
-		</li>
-	{% endif %}
-	</ul>
-</nav>
