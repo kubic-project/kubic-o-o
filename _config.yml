@@ -17,9 +17,6 @@ enable_feed: true
 
 navbar_links:
   -
-    link: https://en.opensuse.org/Portal:Kubic
-    text: Documentation
-  -
     link: https://registry.opensuse.org/
     text: Registry
   -
