@@ -10,7 +10,7 @@ author: Thorsten Kukuk
 We made an important change for our Container Host OS [openSUSE
 MicroOS](https://en.opensuse.org/Portal:MicroOS), which our Kubernetes
 platform [openSUSE Kubic](https://kubic.opensuse.org) will inherit since it is
-based on openSUSE MiceroOS: we use now `tmpfs` for `/tmp`.
+based on openSUSE MicroOS: we use now `tmpfs` for `/tmp`.
 
 
 `tmpfs` is a temporary filesystem that resides in memory. Mounting directories
