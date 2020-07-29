@@ -20,11 +20,9 @@
 - name: Kubic <img src="/assets/images/logo.svg" alt="Kubic Logo" height="100" align="right" />
   rundown: Multi-purpose Standalone & Kubernetes Container Operating System based on openSUSE MicroOS
   description: >-
-    openSUSE Kubic currently offers the following supported System Roles which can be selected during Installation
-
-    * openSUSE MicroOS
-
-    * kubeadm - Certified Kubernetes stack configured using kubeadm atop an openSUSE MicroOS base system
+    <img src="/assets/images/certified-kubernetes-color.svg" alt="Certified Kubernetes" width="90" align="right" />
+    Kubernetes is an open-source system for automating deployment, scaling, and management of containerised applications.
+    Kubic uses kubeadm to provide an easy way of configuring a Kubernetes cluster across multiple machines, while our MicroOS base keeps your operating system updated automatically, with fully atomic rollbacks if required.
   links:
     - name: Documentation
       link: https://en.opensuse.org/Portal:Kubic
@@ -39,16 +37,19 @@
       icon: download
       color: success
 
-- name: kubeadm <img src="/assets/images/certified-kubernetes-color.svg" alt="Certified Kubernetes" width="140" align="right" />
-  rundown: Certified Kubernetes Distribution using kubeadm atop an openSUSE MicroOS base system
+- name: Containers 
+  rundown: A huge pool of freshly build images for your workload
   description: >-
-    Kubernetes is an open-source system for automating deployment, scaling, and management of containerised applications.
-    Kubic uses kubeadm to provide an easy way of configuring a Kubernetes cluster across multiple machines, while our MicroOS base keeps your operating system updated automatically, with fully atomic rollbacks if required.
+    Our Container Registry offers a great choice of containers based on either openSUSE Kubic or plain Tumbleweed. Use them as a base for your project and be on the safe side by our automated rebuilds in <a href="https://build.opensuse.org/">Open Build Service</a> to get security updates of your dependencies fast and easy – continuously tested by <a href="http://open.qa/">openQA</a>. You can even publish your own project using the infrastructure around Open Build Service.
   links:
-    - name: kubeadm Documentation
-      link: https://en.opensuse.org/Kubic:kubeadm
+    - name: Documentation
+      link: https://en.opensuse.org/Portal:Container
       icon: documentation
       color: secondary
+    - name: Registry
+      link: https://registry.opensuse.org/
+      icon: install
+      color: success
 
 - name: And much much more
   rundown: Please contribute to our projects on Github, the Open Build Service, or join us in discussion at IRC and mailing list
