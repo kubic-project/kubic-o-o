@@ -41,30 +41,50 @@
 	configuration files will end up in the current snapshot's overlay in
 	<code class="filename">/var/lib/overlay/&lt;snapshotnum&gt;/etc</code>.
       </p><p>
-	Each snapshot will have one associated overlay directory. The overlay
-	directories are mounted using overlay stacking, i.e. the current
-	snapshot will mount its associated overlay as the
-	<code class="option">upperdir</code> and the previous snapshot's overlays as
-	<code class="option">lowerdir</code>. That means that the current snapshot will
-	see all the changes accumulated in the previous snapshots, but older
-	snapshots will not see changes applied to newer snapshots.
+	Each snapshot will have one associated overlay directory. On creating
+	a new snapshot the previous snapshot's
+	<code class="filename">/etc</code> state will be sychronized
+	into the new snapshot and used as a base. The overlay directories of
+	the current and the new snapshot are then mounted using overlay
+	stacking, i.e. the new snapshot's overlay will be mounted as the
+	<code class="option">upperdir</code> and the current snapshot's overlay as
+	<code class="option">lowerdir</code>. This way changes applied to
+	<code class="filename">/etc</code> after the snapshot was
+	taken, but before the reboot takes place, will still be visible to the
+	new snapshot (Exception: If the file has been modified both in the
+	current and the new snapshot, then the file state of the new snapshot
+	will be visible).
+      </p><p>
+	If the <code class="option">--continue</code> is used multiple times to extend a
+	new snapshot while the system has not been rebooted, and if that
+	snapshot is based on the currently active system, then the
+	synchronization will only run for the first snapshot; the additional
+	snapshot layers will be added to <code class="option">lowerdir</code>. Again
+	this is to make sure that changes to the running system will still be
+	visible after booting into the new system.
       </p><p>
 	Let's have a look at an example <code class="filename">fstab</code> entry:
-	</p><pre class="programlisting">overlay  /etc  overlay  defaults,upperdir=/sysroot/var/lib/overlay/83/etc,lowerdir=/sysroot/var/lib/overlay/81/etc:/sysroot/var/lib/overlay/80/etc:/sysroot/var/lib/overlay/77/etc:/sysroot/var/lib/overlay/76/etc:/sysroot/etc,workdir=/sysroot/var/lib/overlay/work-etc,x-systemd.requires-mounts-for=/var,x-systemd.requires-mounts-for=/var/lib/overlay,x-systemd.requires-mounts-for=/sysroot/var,x-systemd.requires-mounts-for=/sysroot/var/lib/overlay,x-initrd.mount  0  0</pre><p>
+	</p><pre class="programlisting">overlay  /etc  overlay  defaults,upperdir=/sysroot/var/lib/overlay/82/etc,lowerdir=/sysroot/var/lib/overlay/81/etc:/sysroot/var/lib/overlay/76/etc:/sysroot/etc,workdir=/sysroot/var/lib/overlay/work-etc,x-systemd.requires-mounts-for=/var,x-systemd.requires-mounts-for=/var/lib/overlay,x-systemd.requires-mounts-for=/sysroot/var,x-systemd.requires-mounts-for=/sysroot/var/lib/overlay,x-initrd.mount  0  0</pre><p>
       </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
-	We are currently in snapshot <span class="emphasis"><em>83</em></span> as indicated by the
+	We are currently in snapshot <span class="emphasis"><em>82</em></span> as indicated by the
 	<code class="option">upperdir</code> directory. This can be confirmed by typing
 	<span class="command"><strong>snapper list</strong></span> or
 	<span class="command"><strong>btrfs subvolume get-default /</strong></span>. All changes to
 	<code class="filename">/etc</code> will end up in this
 	directory.
       </p></li><li class="listitem"><p>
-	<code class="option">lowerdir</code> contains several overlays from previous
-	snapshots. In this case it seem the snapshots were not created
-	consecutively - maybe there were a few rollbacks in between or a
-	snapshot wasn't applied by rebooting into it. The lowest snapshot is
-	always <code class="filename">/sysroot/etc</code>, containing
-	the root file system's contents.
+	<code class="option">lowerdir</code> contains two numbered overlay directories.
+	The later directory with number <span class="emphasis"><em>76</em></span> indicates the
+	snapshot which was used as a base. This snapshot's
+	<code class="filename">/etc</code> state was also synchronized
+	into the read-only root file system of snapshot 82. As the
+	<code class="option">lowerdir</code> contains a second entry with number
+	<span class="emphasis"><em>81</em></span> it means that the <code class="option">--continue</code>
+	has been used before the system was rebooted. Gaps in the number such
+	as seen here may indicate that those snapshots were discarded or a
+	rollback to snapshot 76 was performed. The lowest snapshot is always
+	<code class="filename">/sysroot/etc</code>, containing the
+	root file system's contents.
       </p></li><li class="listitem"><p>
 	As <code class="filename">/etc</code> is mounted by
 	<span class="application">dracut</span> during early boot the options have to
@@ -72,14 +92,6 @@
 	<span class="command"><strong>x-systemd.</strong></span> options are setting up the volume's
 	<span class="application">systemd</span> dependencies correctly.
       </p></li></ul></div><p>
-	To prevent the <code class="filename">/etc</code> overlays
-	from growing infinitely they will be synced into the root file system if
-	no snapshot is referencing them any more. So please be aware that the
-	root file system's <code class="filename">/etc</code> state by
-	itself does neither contain the original package contents nor the
-	snapshot's current state. Only the snapshot plus all overlay layers
-	represents the state of <code class="filename">/etc</code>
-	correctly. Overlays no longer needed because they have been merged into
-	all snapshots will be deleted during the <span class="command"><strong>transactional-update
-	cleanup</strong></span> run.
+	Overlays no longer referenced by any snapshots will be deleted during
+	the <span class="command"><strong>transactional-update cleanup</strong></span> run.
       </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="tu-howitworks.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="tu-files.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 2. Concept </td><td width="20%" align="center"><a accesskey="h" href="transactional-update.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 4. Files</td></tr></table></div></body></html>
