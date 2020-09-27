@@ -15,7 +15,7 @@
     h1:hover > a.headerlink, h2:hover > a.headerlink, h3:hover > a.headerlink, dt:hover > a.headerlink {
       visibility: visible;
     }
-  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.25.1</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
+  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.26</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
     updates.</p></div><div class="refsynopsisdiv"><a name="synopsis"></a><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...] [<em class="replaceable"><code>general-command</code></em>...] [<em class="replaceable"><code>package-command</code></em>
          [<em class="replaceable"><code>command-argument</code></em>...]
       ]</p></div><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...]  <em class="replaceable"><code>standalone-command</code></em> </p></div><p>transactional-update.service</p><p>transactional-update.timer</p></div><div class="refsect1"><a name="description"></a><h2 id="DESCRIPTION">DESCRIPTION<a class="headerlink" title="Permalink to this headline" href="#DESCRIPTION">¶</a></h2><p><span class="command"><strong>transactional-update</strong></span> updates the system
@@ -53,7 +53,7 @@ running system will be visible in the new system, but not vice versa. To keep
 the number of layers at a minimum the
 /etc state of the previous snapshot is
 synchronized into the new root file system; unused overlays will be
-removed at a later time (see the <code class="option">cleanup</code> option).
+removed at a later time (see the <code class="option">cleanup-overlays</code> option).
 </p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>
 If a file in /etc has been changed
 during the update and is <span class="emphasis"><em>also</em></span> changed in the running
@@ -86,15 +86,17 @@ for more information.
   General Commands can be used together in any combination; additionally they
   can be extended with one <a class="link" href="#pkg_commands" title="Package Commands">Package Command</a>.
   The order of the General Commands doesn't matter.
-</p><div class="variablelist"><dl class="variablelist"><dt id="cleanup"><span class="term"><code class="option">cleanup</code></span><a class="headerlink" title="Permalink to this term" href="#cleanup">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>If the current root filesystem is identical to the active root
+</p><div class="variablelist"><dl class="variablelist"><dt id="cleanup"><span class="term"><code class="option">cleanup</code></span><a class="headerlink" title="Permalink to this term" href="#cleanup">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Identical to calling both <code class="option">cleanup-snapshots</code> and
+      <code class="option">cleanup-overlays</code>.
+      </p></dd><dt id="cleanup-snapshots"><span class="term"><code class="option">cleanup-snapshots</code></span><a class="headerlink" title="Permalink to this term" href="#cleanup-snapshots">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>If the current root filesystem is identical to the active root
       filesystem (means after a reboot, before
       <span class="command"><strong>transactional-update</strong></span> creates a new snapshot with
       updates), all old snapshots without a cleanup algorithm get a cleanup
       algorithm set. This is to make sure, that old snapshots will be deleted
       by snapper. See the section about cleanup algorithms in
       <a href="http://snapper.io/manpages/snapper.html"><span class="citerefentry"><span class="refentrytitle">snapper</span>(8)</span></a>.
-      </p><p>
-	Also removes all unreferenced (and thus unused)
+      </p></dd><dt id="cleanup-overlays"><span class="term"><code class="option">cleanup-overlays</code></span><a class="headerlink" title="Permalink to this term" href="#cleanup-overlays">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
+	Removes all unreferenced (and thus unused)
 	/etc overlay directories in
 	/var/lib/overlay.
       </p></dd><dt id="grub.cfg"><span class="term"><code class="option">grub.cfg</code></span><a class="headerlink" title="Permalink to this term" href="#grub.cfg">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
