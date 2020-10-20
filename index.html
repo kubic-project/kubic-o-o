@@ -52,3 +52,19 @@ layout: default
 		</div>
 	</div>
 </div>
+
+<div id="hardware" class="position-relative overflow-hidden w-100">
+  <div class="container">
+    <div class="row">
+      {% for requirement in site.data.requirements %}
+      <div class="col-md-6 p-5 mb-auto">
+	<h1 class="display-4 font-weight-normal">{{ requirement.name }} {% include icons/{{ requirement.icon }}.svg %}</h1>
+	<p class="lead font-weight-normal">
+	  {{ requirement.rundown }}
+	</p>
+	{{ requirement.description | markdownify }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

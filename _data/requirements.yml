@@ -1,0 +1,30 @@
+- name: Memory
+  icon: chip
+  description: >-
+    * minimum: 4 GB physical RAM
+
+    * recommended: 8 GB or more
+
+    * additional memory is needed for your workload
+
+    * swap space **disabled** in order for kubernetes to work properly
+
+- name: Storage
+  icon: hdd
+  description: >-
+    * minimum: 30 GB available disk space
+
+    * recommended: 40 GB or more
+
+    * increasing based on the needs of your container workloads
+
+    * high write speed rate: SSD recommended
+
+- name: System
+  icon: cpu
+  description: >-
+    * 2 CPUs or more
+
+    * Full network connectivity between all machines in the cluster
+
+    * Unique hostname and MAC address for every node

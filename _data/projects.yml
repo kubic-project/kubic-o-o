@@ -1,22 +1,3 @@
-- name: MicroOS <img src="/assets/images/microos-logo.svg" alt="MicroOS Logo" height="80" align="right"/>
-  rundown: Micro Service OS providing Transactional (Atomic) Updates upon a read-only btrfs root filesystem
-  description: >-
-    Designed to host container workloads with automated administration & patching.
-    Installing openSUSE MicroOS you get a quick, small environment for deploying Containers, or any other workload that benefits from Transactional Updates. As rolling release distribution the software is always up-to-date.
-  links:
-    - name: Documentation
-      link: https://en.opensuse.org/Portal:MicroOS
-      icon: documentation
-      color: secondary
-    - name: System Requirements
-      link: https://en.opensuse.org/Kubic:SystemRequirements
-      icon: cpu
-      color: primary
-    - name: Downloads
-      link: https://en.opensuse.org/Portal:MicroOS/Downloads
-      icon: download
-      color: success
-
 - name: Kubic <img src="/assets/images/logo.svg" alt="Kubic Logo" height="100" align="right" />
   rundown: Multi-purpose Standalone & Kubernetes Container Operating System based on openSUSE MicroOS
   description: >-
@@ -29,7 +10,7 @@
       icon: documentation
       color: secondary
     - name: System Requirements
-      link: https://en.opensuse.org/Kubic:SystemRequirements
+      link: '#hardware'
       icon: cpu
       color: primary
     - name: Downloads
@@ -37,7 +18,14 @@
       icon: download
       color: success
 
-- name: Containers 
+- name: MicroOS <img src="/assets/images/microos-logo.svg" alt="MicroOS Logo" height="80" align="right"/>
+  rundown: Micro Service OS providing Transactional (Atomic) Updates upon a read-only btrfs root filesystem
+  description: >-
+    Designed to host container workloads with automated administration & patching.
+    Installing openSUSE MicroOS you get a quick, small environment for deploying Containers, or any other workload that benefits from Transactional Updates. As rolling release distribution the software is always up-to-date.<br/>
+    Check out the <a href="https://microos.opensuse.org">MicroOS website</a> for further information.
+
+- name: Containers
   rundown: A huge pool of freshly build images for your workload
   description: >-
     Our Container Registry offers a great choice of containers based on either openSUSE Kubic or plain Tumbleweed. Use them as a base for your project and be on the safe side by our automated rebuilds in <a href="https://build.opensuse.org/">Open Build Service</a> to get security updates of your dependencies fast and easy – continuously tested by <a href="http://open.qa/">openQA</a>. You can even publish your own project using the infrastructure around Open Build Service.
