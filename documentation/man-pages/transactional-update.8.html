@@ -15,7 +15,7 @@
     h1:hover > a.headerlink, h2:hover > a.headerlink, h3:hover > a.headerlink, dt:hover > a.headerlink {
       visibility: visible;
     }
-  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.27</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
+  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.28</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
     updates.</p></div><div class="refsynopsisdiv"><a name="synopsis"></a><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...] [<em class="replaceable"><code>general-command</code></em>...] [<em class="replaceable"><code>package-command</code></em>
          [<em class="replaceable"><code>command-argument</code></em>...]
       ]</p></div><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...]  <em class="replaceable"><code>standalone-command</code></em> </p></div><p>transactional-update.service</p><p>transactional-update.timer</p></div><div class="refsect1"><a name="description"></a><h2 id="DESCRIPTION">DESCRIPTION<a class="headerlink" title="Permalink to this headline" href="#DESCRIPTION">¶</a></h2><p><span class="command"><strong>transactional-update</strong></span> updates the system
@@ -123,11 +123,30 @@ for more information.
       </p></dd><dt id="run cmd"><span class="term"><code class="option">run</code> <em class="replaceable"><code>cmd</code></em></span><a class="headerlink" title="Permalink to this term" href="#run%20cmd">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
 	Execute the the command <em class="replaceable"><code>cmd</code></em> inside
 	a new snapshot. By default this snaphot will remain, but if
-	<code class="option">--drop-if-no-chage</code> is set, the new snapshot
+	<code class="option">--drop-if-no-change</code> is set, the new snapshot
 	will be dropped if there is no change in the file system.
       </p><p>
 	This command consumes all the remaining parameters, so should
-	be placed the in the last position.
+	be placed in the last position.
+      </p><p>
+	To use features like command lists (e.g. pipes or separators) wrap the
+	script into a Shell command like such as
+	</p><pre class="programlisting">
+	  transactional-update run bash -c '
+	    ls &amp;&amp; date
+	    if [ true ]; then
+	      echo -n "Hello "
+	      echo '\''world'\''
+	    fi
+	  '
+	</pre><p>
+      </p></dd><dt id="setup-selinux"><span class="term"><code class="option">setup-selinux</code></span><a class="headerlink" title="Permalink to this term" href="#setup-selinux">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
+	Sets up a SELinux system: Installs the default SELinux "Targeted
+	policy" and enables it.
+      </p><p>
+	This command can not be combined with any
+	<a class="link" href="#pkg_commands" title="Package Commands">Package Command</a> other than
+	<code class="option">install</code>.
       </p></dd><dt id="shell"><span class="term"><code class="option">shell</code></span><a class="headerlink" title="Permalink to this term" href="#shell">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
 	Opens a shell to execute commands like zypper manually.
 	After all actions are done, before the snapshot with the changes is
