@@ -12,9 +12,9 @@
 - name: Storage
   icon: hdd
   description: >-
-    * minimum: 30 GB available disk space
+    * / (root) partition: 5 GB available disk space minimum, 20 GB maximum
 
-    * recommended: 40 GB or more
+    * /var partition: 5 GB available disk space minimum, 40 GB or more recommended
 
     * increasing based on the needs of your container workloads
 
