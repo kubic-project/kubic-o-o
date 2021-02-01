@@ -1,5 +1,5 @@
 - name: Kubic <img src="/assets/images/logo.svg" alt="Kubic Logo" height="100" align="right" />
-  rundown: Multi-purpose Standalone & Kubernetes Container Operating System based on openSUSE MicroOS
+  rundown: Certified Kubernetes Distribution based on openSUSE MicroOS
   description: >-
     <img src="/assets/images/certified-kubernetes-color.svg" alt="Certified Kubernetes" width="90" align="right" />
     Kubernetes is an open-source system for automating deployment, scaling, and management of containerised applications.
