@@ -66,9 +66,9 @@ documentation for [Flatcar Container Linux](https://rancher.com/docs/rke/latest/
 
 Importing an openSUSE Kubic cluster can be simple or difficult, depending
 on which kubernetes version your cluster is running.
-openSUSE Kubic currently comes with kuberenetes 2.20.2 as default. Rancher
-only works with kuberenetes up to 2.19.7, it does not work with 2.20.2 as of
-today. So if you haven't updated your cluster yet to 2.20.x, you can go to
+openSUSE Kubic currently comes with kuberenetes 1.20.2 as default. Rancher
+only works with kuberenetes up to 1.19.7, it does not work with 1.20.2 as of
+today. So if you haven't updated your cluster yet to 1.20.x, you can go to
 `Register an existing Kubernetes cluster`, select `Other Cluster` and follow
 the workflow.
 
