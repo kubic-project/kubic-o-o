@@ -17,6 +17,10 @@
       link: https://en.opensuse.org/Portal:Kubic/Downloads
       icon: download
       color: success
+    - name: Report a Bug
+      link: https://bugzilla.opensuse.org/enter_bug.cgi?product=openSUSE+Tumbleweed&component=Kubic&format=guided
+      icon: bug
+      color: warning
 
 - name: MicroOS <img src="/assets/images/microos-logo.svg" alt="MicroOS Logo" height="80" align="right"/>
   rundown: Micro Service OS providing Transactional (Atomic) Updates upon a read-only btrfs root filesystem
