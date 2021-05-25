@@ -19,7 +19,7 @@
       color: success
     - name: Report a Bug
       link: https://bugzilla.opensuse.org/enter_bug.cgi?product=openSUSE+Tumbleweed&component=Kubic&format=guided
-      icon: bug
+      icon: spanner
       color: warning
 
 - name: MicroOS <img src="/assets/images/microos-logo.svg" alt="MicroOS Logo" height="80" align="right"/>
