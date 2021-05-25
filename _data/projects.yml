@@ -7,7 +7,7 @@
   links:
     - name: Documentation
       link: https://en.opensuse.org/Portal:Kubic
-      icon: documentation
+      icon: light
       color: secondary
     - name: System Requirements
       link: '#hardware'
