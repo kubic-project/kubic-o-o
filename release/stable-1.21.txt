@@ -1,1 +1,1 @@
-stable.txt
+latest-1.21.txt
