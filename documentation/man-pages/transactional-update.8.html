@@ -15,7 +15,7 @@
     h1:hover > a.headerlink, h2:hover > a.headerlink, h3:hover > a.headerlink, dt:hover > a.headerlink {
       visibility: visible;
     }
-  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 2.28.3</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
+  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 3.6.1</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
     updates.</p></div><div class="refsynopsisdiv"><a name="synopsis"></a><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...] [<em class="replaceable"><code>general-command</code></em>...] [<em class="replaceable"><code>package-command</code></em>
          [<em class="replaceable"><code>command-argument</code></em>...]
       ]</p></div><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...]  <em class="replaceable"><code>standalone-command</code></em> </p></div><p>transactional-update.service</p><p>transactional-update.timer</p></div><div class="refsect1"><a name="description"></a><h2 id="DESCRIPTION">DESCRIPTION<a class="headerlink" title="Permalink to this headline" href="#DESCRIPTION">¶</a></h2><p><span class="command"><strong>transactional-update</strong></span> updates the system
@@ -225,6 +225,51 @@ for more information.
 	number (as displayed by <span class="command"><strong>snapper list</strong></span>) or the word
 	<code class="option">last</code>. <code class="option">last</code> will try to reset to the
 	latest working snapshot.
+      </p></dd><dt id="status"><span class="term"><code class="option">status</code></span><a class="headerlink" title="Permalink to this term" href="#status">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>
+	This command is under development and will change in the
+	future. The status command is currently using a non-stable
+	feature of MicroOS, the control.xml file, that will change the
+	scope and location in future releases.
+      </div><p>
+	Shows the status of current and older snapshots. The status
+	try to represent how the system diverges from an ideal base
+	image, and the list of patterns and packages added and removed
+	from it.
+      </p><p>
+	The status is represented via a hash (currently sha256) of a
+	manifest file that contains the list of expected packages and
+	the build time of those packages. The list of expected
+	packages are calculated using the <span class="command"><strong>libsolv</strong></span>
+	library, and resolving it for the list of default patterns
+	associated with the role used during the installation.
+      </p><p>
+	Two manifest files are created. One will use the information
+	from the repositories used for the installation. The list of
+	packages (including the full version and architecture) and the
+	build time will be extracted from the repository information.
+	The other one will use the same list of packages, but using
+	the build time from the current system (if the package is
+	present).
+      </p><p>
+	Both manifest files will be the same if we have a fresh
+	installed system. But in distributions like MicroOS, that are
+	released based on a rolling model, the subsequent updates will
+	make compromises that will result in a diverged state. In that
+	way, if two systems have the same BASE_MANIFEST_DIGEST (the
+	digest calculated from the repository information), we can
+	assume that are in the same state even if the
+	SYSTEM_MANIFEST_DIGEST is different.
+      </p><p>
+	We can require of two system to be in the exact same status,
+	and for that we can compare both digests.
+      </p><p>
+	The status also shows the differences in patterns and packages
+	from the expected situation, and will save a copy of both
+	manifest for further audit of the system.
+      </p><p>
+	To write the necessary state file
+	<code class="option">EXPERIMENTAL_STATUS=1</code>has to be set in
+	transactional-update.conf.
       </p></dd></dl></div></div></div><div class="refsect1"><a name="options"></a><h2 id="OPTIONS">OPTIONS<a class="headerlink" title="Permalink to this headline" href="#OPTIONS">¶</a></h2><div class="variablelist"><dl class="variablelist"><dt id="--interactive"><span class="term"><code class="option">--interactive</code>, </span><span class="term"><code class="option">-i</code></span><a class="headerlink" title="Permalink to this term" href="#--interactive">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Calls zypper in interactive mode, even if the default for this command is non-interactive.</p></dd><dt id="--non-interactive"><span class="term"><code class="option">--non-interactive</code>, </span><span class="term"><code class="option">-n</code></span><a class="headerlink" title="Permalink to this term" href="#--non-interactive">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Calls zypper in non-interactive mode, even if the default for this command is interactive.</p></dd><dt id="--continue number"><span class="term"><code class="option">--continue</code> [<span class="optional"><em class="replaceable"><code>number</code></em></span>], </span><span class="term"><code class="option">-c</code> [<span class="optional"><em class="replaceable"><code>number</code></em></span>]</span><a class="headerlink" title="Permalink to this term" href="#--continue%20number">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Use the given snapshot or, if no number is given, the current
 	default snapshot as a base for the next snapshot.</p></dd><dt id="--no-selfupdate"><span class="term"><code class="option">--no-selfupdate</code></span><a class="headerlink" title="Permalink to this term" href="#--no-selfupdate">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Skip checking for newer transactional-update versions.</p></dd><dt id="--drop-if-no-change"><span class="term"><code class="option">--drop-if-no-change</code>, </span><span class="term"><code class="option">-d</code></span><a class="headerlink" title="Permalink to this term" href="#--drop-if-no-change">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>If the action does not produce a change in the underlying
       file system, the snapshot will be dropped.</p></dd><dt id="--quiet"><span class="term"><code class="option">--quiet</code></span><a class="headerlink" title="Permalink to this term" href="#--quiet">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Don't print warnings and informational messages to stdout.</p></dd><dt id="--help"><span class="term"><code class="option">--help</code>, </span><span class="term"><code class="option">-h</code></span><a class="headerlink" title="Permalink to this term" href="#--help">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Display help and exit</p></dd><dt id="--version"><span class="term"><code class="option">--version</code></span><a class="headerlink" title="Permalink to this term" href="#--version">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Output version information and exit</p></dd></dl></div></div><div class="refsect1"><a name="important"></a><h2 id="IMPORTANT">IMPORTANT<a class="headerlink" title="Permalink to this headline" href="#IMPORTANT">¶</a></h2><p>
