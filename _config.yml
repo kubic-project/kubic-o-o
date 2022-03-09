@@ -2,7 +2,7 @@ title: openSUSE Kubic
 title_short: Kubic
 email: opensuse-factory@opensuse.org
 description: Certified Kubernetes distribution & container-related technologies built by the openSUSE community
-copyright: '© 2017–2021 openSUSE contributors'
+copyright: '© 2017–2022 openSUSE contributors'
 baseurl: ""
 url: ""
 plugins:
