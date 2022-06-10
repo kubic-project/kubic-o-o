@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Kubic Project Wound Down"
-date:   2022-06-10 12:00:00 +0100
+date:   2022-06-10 11:00:00 +0100
 author: Richard Brown
 ---
 
