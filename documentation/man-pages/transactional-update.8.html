@@ -185,6 +185,18 @@ for more information.
 	<span class="command"><strong>zypper patch</strong></span> is used to update the snapshot.
 	Afterwards, the snapshot is activated and will be used as the new root
 	filesystem during next boot.
+      </p></dd><dt id="register arguments"><span class="term"><code class="option">register</code> <em class="replaceable"><code>arguments</code></em></span><a class="headerlink" title="Permalink to this term" href="#register%20arguments">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
+        Register a (commercial) system. This is a simple wrapper for
+        <span class="command"><strong>SUSEConnect</strong></span>, as some commands may require access
+        to the root file system (e.g. to add a new key to the RPM database).
+        Any arguments will just be forwarded to <span class="command"><strong>SUSEConnect</strong></span>.
+      </p><p>
+        This command implies the <code class="option">--drop-if-no-change</code> option
+        to avoid creation of unnecessary snapshots, as many of the
+        <span class="command"><strong>SUSEConnect</strong></span> options are read-only or only require
+        access to /etc.
+      </p><p>
+        <span class="command"><strong>SUSEConnect</strong></span> is always a non-interactive command.
       </p></dd></dl></div></div><div class="refsect3"><a name="i_pkg_commands"></a><h4>Interactive Package Commands</h4><div class="variablelist"><dl class="variablelist"><dt id="migration"><span class="term"><code class="option">migration</code></span><a class="headerlink" title="Permalink to this term" href="#migration">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
 	On systems which are registered against the SUSE Customer Center (SCC)
 	or SMT, a migration to a new version of the installed products can be
@@ -225,12 +237,12 @@ for more information.
 	number (as displayed by <span class="command"><strong>snapper list</strong></span>) or the word
 	<code class="option">last</code>. <code class="option">last</code> will try to reset to the
 	latest working snapshot.
-      </p></dd><dt id="status"><span class="term"><code class="option">status</code></span><a class="headerlink" title="Permalink to this term" href="#status">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>
-	This command is under development and will change in the
-	future. The status command is currently using a non-stable
-	feature of MicroOS, the control.xml file, that will change the
-	scope and location in future releases.
-      </div><p>
+      </p></dd><dt id="status"><span class="term"><code class="option">status</code></span><a class="headerlink" title="Permalink to this term" href="#status">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
+          This command is under development and will change in the
+          future. The status command is currently using a non-stable
+          feature of MicroOS, the control.xml file, that will change the
+          scope and location in future releases.
+        </p></div><p>
 	Shows the status of current and older snapshots. The status
 	try to represent how the system diverges from an ideal base
 	image, and the list of patterns and packages added and removed
