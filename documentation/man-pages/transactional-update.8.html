@@ -15,7 +15,7 @@
     h1:hover > a.headerlink, h2:hover > a.headerlink, h3:hover > a.headerlink, dt:hover > a.headerlink {
       visibility: visible;
     }
-  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 4.0.1</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
+  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 4.1.0</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
     updates.</p></div><div class="refsynopsisdiv"><a name="synopsis"></a><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...] [<em class="replaceable"><code>general-command</code></em>...] [<em class="replaceable"><code>package-command</code></em>
          [<em class="replaceable"><code>command-argument</code></em>...]
       ]</p></div><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...]  <em class="replaceable"><code>standalone-command</code></em> </p></div><p>transactional-update.service</p><p>transactional-update.timer</p></div><div class="refsect1"><a name="description"></a><h2 id="DESCRIPTION">DESCRIPTION<a class="headerlink" title="Permalink to this headline" href="#DESCRIPTION">¶</a></h2><p><span class="command"><strong>transactional-update</strong></span> updates the system
@@ -140,6 +140,17 @@ for more information.
 	    fi
 	  '
 	</pre><p>
+      </p></dd><dt id="setup-kdump --crashkernel=low,high"><span class="term"><code class="option">setup-kdump</code> [<span class="optional">--crashkernel=<em class="replaceable"><code>low</code></em>,<em class="replaceable"><code>high</code></em></span>]</span><a class="headerlink" title="Permalink to this term" href="#setup-kdump%20--crashkernel=low,high">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
+	Sets up kdump on the system; if no <code class="option">--crashkernel</code>
+	option is specified then it will use the values determined by
+	<span class="command"><strong>kdumptool calibrate</strong></span>, otherwise the values of
+	<em class="replaceable"><code>low</code></em> and <em class="replaceable"><code>high</code></em>
+	(numbers in Megabytes) will be used for the corresponding
+	<span class="command"><strong>crashkernel</strong></span> kernel parameters.
+      </p><p>
+	This command can not be combined with any
+	<a class="link" href="#pkg_commands" title="Package Commands">Package Command</a> other than
+	<code class="option">install</code>.
       </p></dd><dt id="setup-selinux"><span class="term"><code class="option">setup-selinux</code></span><a class="headerlink" title="Permalink to this term" href="#setup-selinux">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
 	Sets up a SELinux system: Installs the default SELinux "Targeted
 	policy" and enables it.
