@@ -67,7 +67,7 @@ lowerdir2 (/etc of snapshot x-2)     | file1 | file2 | file3 |       |       | f
 	</pre><p>
 	  Let's have another look from the perspective while an update is
 	  running. <em class="replaceable"><code>x</code></em> is the id of the new snapshot
-	  where the update is currently be performed in,
+	  where the update is currently being performed.
 	  <em class="replaceable"><code>x-1</code></em> is the id of the currently running
 	  snapshot, and <em class="replaceable"><code>x-2</code></em> is the id of the
 	  snapshot before the currently running one.
@@ -85,7 +85,7 @@ lowerdir2 (/etc of snapshot x-2)     | file1 | file2 | file3 |       |       | f
 	  the Warning below for details.
 	</p><p>
 	  <code class="filename">file4</code> was only added in the new snapshot
-	  and will be only available there. The currently running system doesn't
+	  and will only be available there. The currently running system doesn't
 	  know anything about it.
 	</p><p>
 	  <code class="filename">file5</code> was added in the current snapshot.
@@ -114,7 +114,8 @@ lowerdir2 (/etc of snapshot x-2)     | file1 | file2 | file3 |       |       | f
 	  service <span class="command"><strong>transactional-update-etc-cleaner</strong></span> will
 	  check for these conflicts and print the results to the journal.
 	</p></div><p>
-	If the <code class="option">--continue</code> is used multiple times to extend a
+	If the <code class="option">--continue</code> option is used multiple times to
+        extend a
 	new snapshot while the system has not been rebooted, and if that
 	snapshot is based on the currently active system, then the
 	merge will only run for the first snapshot; the additional
@@ -128,7 +129,8 @@ lowerdir2 (/etc of snapshot x-2)     | file1 | file2 | file3 |       |       | f
 	indicates the snapshot which was used as a base. As the
 	<code class="option">lowerdir</code> contains a second entry with number
 	<span class="emphasis"><em>81</em></span> it means that the <code class="option">--continue</code>
-	has been used before the system was rebooted. Gaps in the number such
+	option has been used before the system was rebooted. Gaps in the
+        numbers such
 	as seen here may indicate that those snapshots were discarded or a
 	rollback to snapshot 76 was performed. The lowest snapshot is always
 	<code class="filename">/sysroot/etc</code>, containing the
@@ -137,7 +139,7 @@ lowerdir2 (/etc of snapshot x-2)     | file1 | file2 | file3 |       |       | f
 	As <code class="filename">/etc</code> is mounted by
 	<span class="application">dracut</span> during early boot the options have to
 	be prefixed with <span class="emphasis"><em>/sysroot</em></span>. The
-	<span class="command"><strong>x-systemd.</strong></span> options are setting up the volume's
+	<span class="command"><strong>x-systemd</strong></span> options are setting up the volume's
 	<span class="application">systemd</span> dependencies correctly.
       </p><p>
 	Overlays no longer referenced by any snapshots will be deleted during

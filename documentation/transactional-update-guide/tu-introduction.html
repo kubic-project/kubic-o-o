@@ -3,8 +3,8 @@
 	is an application that allows to update a Linux system and its
 	applications in an <span class="emphasis"><em>atomic</em></span> way: The update will
 	be performed in the background, not influencing the currently
-	running system. The update will be activated by	a reboot instead,
-	similar to
+	running system. The update will be activated by	a reboot. This concept
+	is similar to
 	<a class="ulink" href="https://rpm-ostree.readthedocs.io/en/latest/" target="_top">rpm-ostree</a>
 	or CoreOS' previous Container OS. However
 	<span class="emphasis"><em>transactional-update</em></span> is not another
@@ -42,7 +42,8 @@
 	      </p></li><li class="listitem"><p>
 		The machine can be powered off at any time. When powered on
 		again either the unmodified old state or the new state is
-		active, but no state in between.
+		active. It is not possible to have a running system in an
+                intermediate state.
 	      </p></li></ul></div></li><li class="listitem"><p>
 	    can be rolled back:
 	  </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem"><p>
@@ -50,10 +51,10 @@
 		to not be compatible with your infrastructure, the system can
 		quickly be restored to a previous state.
 	      </p></li></ul></div></li></ul></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="tu-introduction-reason"></a>1.3. Use Cases</h2></div></div></div><p>
-	As Linux distributions are evolving over the years, new concepts are
-	appearing such rolling releases, containers, embedded systems or long
+	As Linux distributions are evolving, new concepts are
+	emerging, such rolling releases, containers, embedded systems or long
 	time support releases. While the classical update mechanisms are
-	probably perfectly fine for a regular desktop user or a conventional
+	probably perfectly fine for a regular desktop users or a conventional
 	server system, the following example use cases may give an indication
 	why an even more error-proof system may be desirable:
       </p><p>
@@ -85,8 +86,8 @@
 	For these systems transactional-updates provides automatic
 	updates; snapshots with failed updates will be automatically removed.
 	Automatic reboots can be triggered using a variety of different reboot
-	methods (e.g. rebootmgr, notify, kured or systemd), making the appliance of
-	the updates cluster aware.
+	methods (e.g. rebootmgr, notify, kured or systemd), making the
+        application of the updates cluster aware.
       </p><p>
 	To summarize: The update should only be applied if there were no
 	errors during the update. If it turns out that the update is
