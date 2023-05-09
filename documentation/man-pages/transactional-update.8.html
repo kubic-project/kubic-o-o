@@ -15,7 +15,7 @@
     h1:hover > a.headerlink, h2:hover > a.headerlink, h3:hover > a.headerlink, dt:hover > a.headerlink {
       visibility: visible;
     }
-  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 4.1.5</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
+  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 4.2.0</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.8"></a><div class="titlepage"></div><div class="refnamediv"><a name="name"></a><h2>Name</h2><p>transactional-update, transactional-update.service, transactional-update.timer — Apply updates to the system in an atomic way via transactional
     updates.</p></div><div class="refsynopsisdiv"><a name="synopsis"></a><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...] [<em class="replaceable"><code>general-command</code></em>...] [<em class="replaceable"><code>package-command</code></em>
          [<em class="replaceable"><code>command-argument</code></em>...]
       ]</p></div><div class="cmdsynopsis"><p><code class="command">transactional-update</code>  [<em class="replaceable"><code>options</code></em>...]  <em class="replaceable"><code>standalone-command</code></em> </p></div><p>transactional-update.service</p><p>transactional-update.timer</p></div><div class="refsect1"><a name="description"></a><h2 id="DESCRIPTION">DESCRIPTION<a class="headerlink" title="Permalink to this headline" href="#DESCRIPTION">¶</a></h2><p><span class="command"><strong>transactional-update</strong></span> updates the system
@@ -86,7 +86,23 @@ for more information.
   General Commands can be used together in any combination; additionally they
   can be extended with one <a class="link" href="#pkg_commands" title="Package Commands">Package Command</a>.
   The order of the General Commands doesn't matter.
-</p><div class="variablelist"><dl class="variablelist"><dt id="cleanup"><span class="term"><code class="option">cleanup</code></span><a class="headerlink" title="Permalink to this term" href="#cleanup">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Identical to calling both <code class="option">cleanup-snapshots</code> and
+</p><div class="variablelist"><dl class="variablelist"><dt id="apply"><span class="term"><code class="option">apply</code></span><a class="headerlink" title="Permalink to this term" href="#apply">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
+      Mounts /usr,
+      /etc and
+      /boot of the (new) default
+      snapshot into the currently running system. This is mostly useful for
+      using newly installed packages directly without a reboot. When using
+      apply on a system where existing files will be replaced (e.g. when doing
+      a system update) this behaves similarly to a regular zypper update where
+      files of currently running applications will also be replaced, but with
+      the additional advantage that the update itself was finished successfully
+      as a whole, avoiding inconsistent states on update failures.
+      </p><p>
+      Note that - in contrast to regular zypper updates - services will not be
+      restarted automatically. Additionally mounting the three directories is
+      not one atomic operation, so there will be a short timespan where the
+      directories visible to the system will not be in sync.
+      </p></dd><dt id="cleanup"><span class="term"><code class="option">cleanup</code></span><a class="headerlink" title="Permalink to this term" href="#cleanup">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Identical to calling both <code class="option">cleanup-snapshots</code> and
       <code class="option">cleanup-overlays</code>.
       </p></dd><dt id="cleanup-snapshots"><span class="term"><code class="option">cleanup-snapshots</code></span><a class="headerlink" title="Permalink to this term" href="#cleanup-snapshots">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>If the current root filesystem is identical to the active root
       filesystem (means after a reboot, before
@@ -248,6 +264,9 @@ for more information.
 	number (as displayed by <span class="command"><strong>snapper list</strong></span>) or the word
 	<code class="option">last</code>. <code class="option">last</code> will try to reset to the
 	latest working snapshot.
+      </p><p>
+	This command can be combind with the <code class="option">apply</code> command
+	to make the snapshot effective immediately.
       </p></dd><dt id="status"><span class="term"><code class="option">status</code></span><a class="headerlink" title="Permalink to this term" href="#status">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3><p>
           This command is under development and will change in the
           future. The status command is currently using a non-stable
@@ -301,7 +320,11 @@ for more information.
       will be shown, for other commands the <code class="option">--quiet</code>
       option will be appended to the corresponding helper applications if
       available (e.g. to the <span class="command"><strong>zypper</strong></span> command for the
-      <a class="link" href="#pkg_commands" title="Package Commands">Package Commands</a>).</p></dd><dt id="--help"><span class="term"><code class="option">--help</code>, </span><span class="term"><code class="option">-h</code></span><a class="headerlink" title="Permalink to this term" href="#--help">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Display help and exit</p></dd><dt id="--version"><span class="term"><code class="option">--version</code></span><a class="headerlink" title="Permalink to this term" href="#--version">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Output version information and exit</p></dd></dl></div></div><div class="refsect1"><a name="important"></a><h2 id="IMPORTANT">IMPORTANT<a class="headerlink" title="Permalink to this headline" href="#IMPORTANT">¶</a></h2><p>
+      <a class="link" href="#pkg_commands" title="Package Commands">Package Commands</a>).</p></dd><dt id="--help"><span class="term"><code class="option">--help</code>, </span><span class="term"><code class="option">-h</code></span><a class="headerlink" title="Permalink to this term" href="#--help">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Display help and exit</p></dd><dt id="--version"><span class="term"><code class="option">--version</code></span><a class="headerlink" title="Permalink to this term" href="#--version">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>Output version information and exit</p></dd></dl></div></div><div class="refsect1"><a name="exitstatus"></a><h2 id="EXIT STATUS">EXIT STATUS<a class="headerlink" title="Permalink to this headline" href="#EXIT%20STATUS">¶</a></h2><div class="variablelist"><dl class="variablelist"><dt id="0"><span class="term"><code class="option">0</code></span><a class="headerlink" title="Permalink to this term" href="#0">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>All commands were executed successfully.</p></dd><dt id="1"><span class="term"><code class="option">1</code></span><a class="headerlink" title="Permalink to this term" href="#1">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>One of the commands returned with an error. Due to that a
+      potential new snapshot has been deleted again.</p></dd><dt id="2"><span class="term"><code class="option">2</code></span><a class="headerlink" title="Permalink to this term" href="#2">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>The <code class="option">apply</code> command was not successfull.
+      If called together with another commands, these commands were completed
+      successfully, but the new default snapshot will not be set in the
+      live system.</p></dd></dl></div></div><div class="refsect1"><a name="important"></a><h2 id="IMPORTANT">IMPORTANT<a class="headerlink" title="Permalink to this headline" href="#IMPORTANT">¶</a></h2><p>
   Only RPMs which are fully part of the root filesystem and
   /etc can be updated. There is also
   limited handling for adding files and directories to
@@ -320,7 +343,9 @@ for more information.
   system</em></span>.
   Calling <span class="command"><strong>transactional-update</strong></span> multiple times without
   rebooting will <span class="emphasis"><em>not</em></span> include the changes of the previous
-  snapshot, thus effectively discarding all previous changes.
+  snapshot, thus effectively discarding all previous changes (except when
+  using <code class="option">--continue</code> to explicitly continue a previous snapshot
+  or when <code class="option">apply</code> was called previously).
 </p></div><div class="refsect1"><a name="see_also"></a><h2 id="SEE ALSO">SEE ALSO<a class="headerlink" title="Permalink to this headline" href="#SEE%20ALSO">¶</a></h2><p><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.conf.5.html"><span class="citerefentry"><span class="refentrytitle">transactional-update.conf</span>(5)</span></a>,
 <a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="https://www.freedesktop.org/software/systemd/man/systemd.timer.html"><span class="citerefentry"><span class="refentrytitle">systemd.timer</span>(5)</span></a>,
 <a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="https://www.freedesktop.org/software/systemd/man/systemd.time.html"><span class="citerefentry"><span class="refentrytitle">systemd.time</span>(7)</span></a>,
