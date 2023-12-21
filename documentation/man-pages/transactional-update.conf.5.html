@@ -15,7 +15,7 @@
     h1:hover > a.headerlink, h2:hover > a.headerlink, h3:hover > a.headerlink, dt:hover > a.headerlink {
       visibility: visible;
     }
-  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 4.3.0</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.conf.5"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>transactional-update.conf — transactional-update configuration files</p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="literallayout"><p><br>
+  </style><a xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" href="transactional-update.index.html">Index </a><span xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common" style="float:right">transactional-update 4.5.0</span><hr xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><div class="refentry"><a name="transactional-update.conf.5"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>transactional-update.conf — transactional-update configuration files</p></div><div class="refsynopsisdiv"><h2>Synopsis</h2><div class="literallayout"><p><br>
 /etc/transactional-update.conf<br>
 /usr/etc/transactional-update.conf<br>
 /usr/etc/transactional-update.conf.d/*<br>
@@ -59,7 +59,9 @@
                   machine manually or by other means.
                 </p></dd></dl></div></dd><dt id="UPDATE_METHOD"><span class="term"><code class="varname">UPDATE_METHOD</code></span><a class="headerlink" title="Permalink to this term" href="#UPDATE_METHOD">¶</a></dt><dd xmlns:ss="http://docbook.sf.net/xmlns/string.subst/1.0" xmlns:exsl="http://exslt.org/common"><p>
 	    Specify the zypper update method to use. This value is used for
-	    <a href="transactional-update.service.8.html"><span class="citerefentry"><span class="refentrytitle">transactional-update.service</span>(8)</span></a>.
+	    <a href="transactional-update.service.8.html"><span class="citerefentry"><span class="refentrytitle">transactional-update.service</span>(8)</span></a>
+	    and in case no command is specified when calling
+	    "<code class="literal">transactional-update</code>".
 	  </p><div class="variablelist"><dl class="variablelist"><dt id="dup"><span class="term">"<code class="literal">dup</code>"</span><a class="headerlink" title="Permalink to this term" href="#dup">¶</a></dt><dd><p>
                   Uses "<code class="literal">zypper dup</code>" for updating the system;
                   use this on rolling release distributions like openSUSE
